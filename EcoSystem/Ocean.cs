@@ -78,7 +78,7 @@ namespace EcoSystem
         }
         public Direction GetRandomDirection()
         {
-            return Direction.Up;//(Direction)(rand.Next(0, 1000)%4);
+            return (Direction)(rand.Next(0, 1000)%4);
         }
         //////////////////////
         public void TestFish(Point p)

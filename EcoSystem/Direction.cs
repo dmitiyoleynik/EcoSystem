@@ -6,7 +6,7 @@ namespace EcoSystem
 {
     enum Direction
     {
-        Up,
+        Up = 1,
         Down,
         Left,
         Right
