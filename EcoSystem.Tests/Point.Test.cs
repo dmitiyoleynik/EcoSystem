@@ -1,14 +1,16 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using EcoSystem;
 
 namespace EcoSystem.Tests
 {
     [TestClass]
-    public class UnitTest1
+    public class PointTest
     {
         [TestMethod]
         public void TestMethod1()
         {
+            
         }
     }
 }
