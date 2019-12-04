@@ -57,6 +57,23 @@ namespace EcoSystem.Test
 
         }
 
+        [Fact]
+        public void FishDieTest()
+        {
+            //Arrange
+            Ocean ocean = new Ocean();
+            Point testingPoint = new Point();
+            testingPoint.X = 5;
+            testingPoint.Y = 5;
+            ocean.CreateFish(testingPoint);
+
+            //Act
+            (ocean.Cells[testingPoint.X, testingPoint.Y] as Fish).Die();
+
+            //Assert
+            Assert.False(ocean.isFish(testingPoint));
+        }
+
 
     }
 }

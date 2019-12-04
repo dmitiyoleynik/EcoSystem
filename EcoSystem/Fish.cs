@@ -7,6 +7,7 @@ namespace EcoSystem
     public class Fish : Cell
     {
         private int timeToReproduce;
+        private int timeToDie;
         private int CurrentTime = 0;
         public delegate void SwopCell(Point p1, Point p2);
         public event SwopCell Swop;
@@ -16,19 +17,27 @@ namespace EcoSystem
         public event GetRandomDirection GetDir;
         public delegate bool checkCell(Point p);
         public event checkCell isCell;
+        public delegate void KillCell(Point p);
+        public event KillCell Kill;
 
-        public Fish(Point p, int time, SwopCell swop, CreateFish create, GetRandomDirection dir, checkCell cell) : base(p)
+        public Fish(Point p, SwopCell swop, CreateFish create, GetRandomDirection dir, checkCell cell, KillCell kill,  int reproduceTime = 30, int dieTime = 45) : base(p)
         {
-            this.timeToReproduce = time;
+            this.timeToReproduce = reproduceTime;
+            this.timeToDie = dieTime;
             this.Icon = 'F';
             Swop += swop;
             NewFish += create;
             GetDir += dir;
             isCell += cell;
+            Kill += kill;
         }
         public void Move(Direction d)
         {
             Swop(position, position + d);
+        }
+        public void Die()
+        {
+            Kill(this.position);
         }
         public void Reproduce(Direction d)
         {

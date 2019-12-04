@@ -8,16 +8,17 @@ namespace EcoSystem
     {
         private Cell[,] cells;
         private int width, hight;
-        private int timeToFishReproduce = 15;
+        private int timeToFishReproduce;
         private Random rand = new Random();
 
         public Cell[,] Cells { get => cells; }
         public int Width { get; }
         public int Hight { get; }
-        public Ocean(int width = 120, int hight = 25)
+        public Ocean(int width = 120, int hight = 25, int timeToReproduce = 30)
         {
             this.width = width;
             this.hight = hight;
+            this.timeToFishReproduce = timeToReproduce;
             cells = new Cell[width, hight];
             Clear();
         }
@@ -55,7 +56,7 @@ namespace EcoSystem
                 return;
             }
 
-            cells[p.X, p.Y] = new Fish(p, timeToFishReproduce, SwopCell, CreateFish, GetRandomDirection, isCell);
+            cells[p.X, p.Y] = new Fish(p, SwopCell, CreateFish, GetRandomDirection, isCell, KillCell);
         }
         public void CreateShark(Point p)
         {
