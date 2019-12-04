@@ -6,13 +6,13 @@ namespace EcoSystem
 {
     public class Fish : Cell
     {
-        private int timeToReproduce;
-        private int timeToDie;
-        private int CurrentTime = 0;
+        protected int timeToReproduce;
+        protected int timeToDie;
+        protected int CurrentTime = 0;
         public delegate void SwopCell(Point p1, Point p2);
         public event SwopCell Swop;
         public delegate void CreateFish(Point p);
-        public event CreateFish NewFish;
+        public event CreateFish NewInstance;
         public delegate Direction GetRandomDirection();
         public event GetRandomDirection GetDir;
         public delegate bool checkCell(Point p);
@@ -20,13 +20,13 @@ namespace EcoSystem
         public delegate void KillCell(Point p);
         public event KillCell Kill;
 
-        public Fish(Point p, SwopCell swop, CreateFish create, GetRandomDirection dir, checkCell cell, KillCell kill,  int reproduceTime = 30, int dieTime = 45) : base(p)
+        public Fish(Point p, SwopCell swop, CreateFish create, GetRandomDirection dir, checkCell cell, KillCell kill, int reproduceTime = 30, int dieTime = 45) : base(p)
         {
             this.timeToReproduce = reproduceTime;
             this.timeToDie = dieTime;
             this.Icon = 'F';
             Swop += swop;
-            NewFish += create;
+            NewInstance += create;
             GetDir += dir;
             isCell += cell;
             Kill += kill;
@@ -41,7 +41,7 @@ namespace EcoSystem
         }
         public void Reproduce(Direction d)
         {
-            NewFish(position + d);
+            NewInstance(position + d);
         }
         public void LifeCicleStep()
         {

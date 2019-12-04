@@ -6,7 +6,7 @@ namespace EcoSystem
     {
         static void Main(string[] args)
         {
-            CircleTest();
+
         }
 
         /// <summary>
