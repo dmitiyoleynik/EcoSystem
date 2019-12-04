@@ -11,7 +11,7 @@ namespace EcoSystem
         private int timeToFishReproduce = 15;
         private Random rand = new Random();
 
-        public Cell[,] Cells { get => cells;}
+        public Cell[,] Cells { get => cells; }
         public int Width { get; }
         public int Hight { get; }
         public Ocean(int width = 120, int hight = 25)
@@ -31,16 +31,39 @@ namespace EcoSystem
                 }
             }
         }
+        public bool PointOutOfRange(Point p)
+        {
+            if (p.X >= width || p.Y >= hight || p.X < 0 || p.Y < 0)
+            {
+                return true;
+            }
+            else return false;
+        }
         public void CreateBlock(Point p)
         {
+            if (PointOutOfRange(p))
+            {
+                return;
+            }
+
             cells[p.X, p.Y] = new Block(p);
         }
         public void CreateFish(Point p)
         {
+            if (PointOutOfRange(p))
+            {
+                return;
+            }
+
             cells[p.X, p.Y] = new Fish(p, timeToFishReproduce, SwopCell, CreateFish, GetRandomDirection, isCell);
         }
         public void CreateShark(Point p)
         {
+            if (PointOutOfRange(p))
+            {
+                return;
+            }
+
             cells[p.X, p.Y] = new Shark(p);
         }
         public void Print()
@@ -57,7 +80,12 @@ namespace EcoSystem
         }
         public bool isCell(Point p)
         {
-            if(cells[p.X,p.Y] is Fish|| cells[p.X, p.Y] is Shark|| cells[p.X, p.Y] is Block)
+            if (PointOutOfRange(p))
+            {
+                return false;
+            }
+
+            if (cells[p.X, p.Y] is Fish || cells[p.X, p.Y] is Shark || cells[p.X, p.Y] is Block)
             {
                 return false;
             }
@@ -75,7 +103,7 @@ namespace EcoSystem
         {
             if (cells[p.X, p.Y] is Shark)
             {
-                return true ;
+                return true;
             }
             return false;
         }
@@ -89,51 +117,31 @@ namespace EcoSystem
         }
         public void SwopCell(Point p1, Point p2)
         {
+            if (PointOutOfRange(p1) || PointOutOfRange(p2))
+            {
+                return;
+            }
+
             Cell tmp = cells[p1.X, p1.Y];
             cells[p1.X, p1.Y] = cells[p2.X, p2.Y];
             cells[p2.X, p2.Y] = tmp;
             cells[p1.X, p1.Y].Position = p1;
             cells[p2.X, p2.Y].Position = p2;
 
-            //Point t = cells[p1.X, p1.Y].Position;
-            //cells[p1.X, p1.Y].Position = cells[p2.X, p2.Y].Position;
-            //cells[p2.X, p2.Y].Position = t;
         }
         public void KillCell(Point p)
         {
+            if (PointOutOfRange(p))
+            {
+                return;
+            }
+
             cells[p.X, p.Y] = new Cell(p);
         }
         public Direction GetRandomDirection()
         {
-            return (Direction)(rand.Next(0, 1000)%4+1);
+            return (Direction)(rand.Next(0, 1000) % 4 + 1);
         }
-        //////////////////////
-        public void TestFish(Point p)
-        {
-            CreateFish(p);
-            Print();
-            //Console.ReadKey();
-            //((Fish)cells[p.X, p.Y]).LifeCicleStep();
-            ////((Fish)cells[p.X, p.Y]).Move(Direction.Up);
-            ////SwopCell(p, new Point { X = p.X, Y = p.Y-1 });
-            //Print();
-            //Console.ReadKey();
-            //((Fish)cells[p.X, p.Y-1]).LifeCicleStep();
-            //Print();
-            while (true)
-            {
-                foreach (var item in cells)
-                {
-                    if (item is Fish)
-                    {
-                        ((Fish)item).LifeCicleStep();
-                    }
-                }
-                Print();
-                Console.ReadKey();
-            }
-        }
-        ///
 
     }
 }
