@@ -6,7 +6,11 @@ namespace EcoSystem
     {
         static void Main(string[] args)
         {
-
+            Ocean ocean = new Ocean();
+            ocean.Print();
+            Console.ReadKey();
+            ocean.PopulateOcean(50,10,10);
+            ocean.Print();
         }
 
         /// <summary>
