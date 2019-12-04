@@ -6,14 +6,36 @@ namespace EcoSystem
     {
         static void Main(string[] args)
         {
-            Point p = new Point { X = 5, Y = 6 };
-            Console.WriteLine(p);
-            Direction d = new Direction();
-            Console.WriteLine(d);
-            d = Direction.Down;
-            Console.WriteLine(d);
-            p = p + d;
-            Console.WriteLine(p);
+            CircleTest();
         }
+        static void CircleTest()
+        {
+            //Arrange
+            Ocean ocean = new Ocean(20,20);
+            Point testingPoint = new Point();
+            testingPoint.X = 5;
+            testingPoint.Y = 5;
+
+            //Act
+            ocean.CreateFish(testingPoint);
+
+            while (true)
+            {
+                foreach (Cell item in ocean.Cells)
+                {
+                    if(item is Fish)
+                    {
+                        (item as Fish).LifeCicleStep();
+                    }
+                }
+                //(ocean.Cells[testingPoint.X, testingPoint.Y] as Fish).LifeCicleStep();
+                ocean.Print();
+                Console.ReadKey();
+            }
+
+
+
+        }
+
     }
 }

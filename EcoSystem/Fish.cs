@@ -4,7 +4,7 @@ using System.Text;
 
 namespace EcoSystem
 {
-    class Fish : Cell
+    public class Fish : Cell
     {
         private int timeToReproduce;
         private int CurrentTime = 0;
@@ -28,76 +28,22 @@ namespace EcoSystem
         }
         public void Move(Direction d)
         {
-            switch (d)
-            {
-                case Direction.Up:
-                    Swop(position, new Point { X = position.X, Y = position.Y - 1 });
-                    break;
-                case Direction.Down:
-                    Swop(position, new Point { X = position.X, Y = position.Y + 1 });
-                    break;
-                case Direction.Left:
-                    Swop(position, new Point { X = position.X - 1, Y = position.Y });
-                    break;
-                case Direction.Right:
-                    Swop(position, new Point { X = position.X + 1, Y = position.Y });
-                    break;
-                default:
-                    break;
-            }
+            Swop(position, position + d);
         }
         public void Reproduce(Direction d)
         {
-            switch (d)
-            {
-                case Direction.Up:
-                    NewFish(new Point { X = position.X, Y = position.Y - 1 });
-                    break;
-                case Direction.Down:
-                    NewFish(new Point { X = position.X, Y = position.Y + 1 });
-                    break;
-                case Direction.Left:
-                    NewFish(new Point { X = position.X - 1, Y = position.Y });
-                    break;
-                case Direction.Right:
-                    NewFish(new Point { X = position.X + 1, Y = position.Y });
-                    break;
-                default:
-                    break;
-            }
+            NewFish(position + d);
         }
         public void LifeCicleStep()
         {
             CurrentTime++;
             Direction direct = GetDir();
-            //switch (direct)
-            //{
-            //    case Direction.Up:
-            //        if (!isCell(new Point { X = position.X, Y = position.Y - 1 }))
-            //        {
-            //            return;
-            //        }
-            //        break;
-            //    case Direction.Down:
-            //        if (!isCell(new Point { X = position.X, Y = position.Y + 1 }))
-            //        {
-            //            return;
-            //        }
-            //        break;
-            //    case Direction.Left:
-            //        if (!isCell(new Point { X = position.X - 1, Y = position.Y }))
-            //        {
-            //            return;
-            //        }
-            //        break;
-            //    case Direction.Right:
-            //        if (!isCell(new Point { X = position.X + 1, Y = position.Y }))
-            //        {
-            //            return;
-            //        }
-            //        break;
-            //}
-            if (CurrentTime == timeToReproduce)
+            if (!isCell(position + direct))
+            {
+                return;
+            }
+
+            if (CurrentTime >= timeToReproduce)
             {
                 CurrentTime = 0;
                 Reproduce(direct);

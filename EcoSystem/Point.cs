@@ -4,7 +4,7 @@ using System.Text;
 
 namespace EcoSystem
 {
-    struct Point
+    public struct Point
     {
         public int Y { get; set; }
         public int X { get; set; }

@@ -4,13 +4,16 @@ using System.Text;
 
 namespace EcoSystem
 {
-    class Ocean
+    public class Ocean
     {
         private Cell[,] cells;
         private int width, hight;
         private int timeToFishReproduce = 15;
         private Random rand = new Random();
 
+        public Cell[,] Cells { get => cells;}
+        public int Width { get; }
+        public int Hight { get; }
         public Ocean(int width = 120, int hight = 25)
         {
             this.width = width;
@@ -20,9 +23,9 @@ namespace EcoSystem
         }
         private void Clear()
         {
-            for (int i = 0; i < width - 1; i++)
+            for (int i = 0; i < width; i++)
             {
-                for (int j = 0; j < hight - 1; j++)
+                for (int j = 0; j < hight; j++)
                 {
                     cells[i, j] = new Cell(i, j);
                 }
@@ -43,9 +46,9 @@ namespace EcoSystem
         public void Print()
         {
             Console.Clear();
-            for (int i = 0; i < hight - 1; i++)
+            for (int i = 0; i < hight; i++)
             {
-                for (int j = 0; j < width - 1; j++)
+                for (int j = 0; j < width; j++)
                 {
                     Console.Write(cells[j, i].Icon);
                 }
@@ -54,11 +57,35 @@ namespace EcoSystem
         }
         public bool isCell(Point p)
         {
-            if(cells[p.X,p.Y] is Fish)
+            if(cells[p.X,p.Y] is Fish|| cells[p.X, p.Y] is Shark|| cells[p.X, p.Y] is Block)
             {
                 return false;
             }
             return true;
+        }
+        public bool isFish(Point p)
+        {
+            if (cells[p.X, p.Y] is Fish)
+            {
+                return true;
+            }
+            return false;
+        }
+        public bool isShark(Point p)
+        {
+            if (cells[p.X, p.Y] is Shark)
+            {
+                return true ;
+            }
+            return false;
+        }
+        public bool isBlock(Point p)
+        {
+            if (cells[p.X, p.Y] is Block)
+            {
+                return true;
+            }
+            return false;
         }
         public void SwopCell(Point p1, Point p2)
         {
@@ -78,7 +105,7 @@ namespace EcoSystem
         }
         public Direction GetRandomDirection()
         {
-            return (Direction)(rand.Next(0, 1000)%4);
+            return (Direction)(rand.Next(0, 1000)%4+1);
         }
         //////////////////////
         public void TestFish(Point p)

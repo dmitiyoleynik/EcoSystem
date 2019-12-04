@@ -4,11 +4,12 @@ using System.Text;
 
 namespace EcoSystem
 {
-    class Cell
+    public class Cell
     {
         protected Point position;
-        public Point Position { get; set; }
         public char Icon { get; set; }
+        public Point Position { get => position; set => position = value; }
+
         public Cell(Point p)
         {
             position = p;

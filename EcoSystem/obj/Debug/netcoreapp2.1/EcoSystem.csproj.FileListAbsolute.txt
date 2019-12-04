@@ -8,3 +8,4 @@ C:\study\C#\EcoSystem\EcoSystem\obj\Debug\netcoreapp2.1\EcoSystem.AssemblyInfoIn
 C:\study\C#\EcoSystem\EcoSystem\obj\Debug\netcoreapp2.1\EcoSystem.AssemblyInfo.cs
 C:\study\C#\EcoSystem\EcoSystem\obj\Debug\netcoreapp2.1\EcoSystem.dll
 C:\study\C#\EcoSystem\EcoSystem\obj\Debug\netcoreapp2.1\EcoSystem.pdb
+C:\study\C#\EcoSystem\EcoSystem\obj\Debug\netcoreapp2.1\EcoSystem.csprojAssemblyReference.cache

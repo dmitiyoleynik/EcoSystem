@@ -4,7 +4,7 @@ using System.Text;
 
 namespace EcoSystem
 {
-    class Block : Cell
+    public class Block : Cell
     {
         public Block(Point p) : base(p)
         {
