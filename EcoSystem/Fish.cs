@@ -51,6 +51,11 @@ namespace EcoSystem
             {
                 return;
             }
+            if (CurrentTime >= timeToDie)
+            {
+                Die();
+                return;
+            }
 
             if (CurrentTime >= timeToReproduce)
             {
