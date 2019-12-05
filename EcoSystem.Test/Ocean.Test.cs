@@ -12,8 +12,9 @@ namespace EcoSystem.Test
         {
             //Arrange
             Ocean ocean = new Ocean();
+            Point testPoint = new Point { X = 5, Y = 5 };
             //Act
-            ocean.CreateFish(new Point { X = 5, Y = 5 });
+            ocean.CreateFish(testPoint);
             //Assert
             Assert.Equal<char>('F', ocean.Cells[5, 5].Icon);
         }
@@ -22,8 +23,9 @@ namespace EcoSystem.Test
         {
             //Arrange
             Ocean ocean = new Ocean();
+            Point testPoint = new Point { X = 5, Y = 5 };
             //Act
-            ocean.CreateShark(new Point { X = 5, Y = 5 });
+            ocean.CreateShark(testPoint);
             //Assert
             Assert.Equal<char>('S', ocean.Cells[5, 5].Icon);
         }
@@ -32,8 +34,9 @@ namespace EcoSystem.Test
         {
             //Arrange
             Ocean ocean = new Ocean();
+            Point testPoint = new Point { X = 5, Y = 5 };
             //Act
-            ocean.CreateBlock(new Point { X = 5, Y = 5 });
+            ocean.CreateBlock(testPoint);
             //Assert
             Assert.Equal<char>('#', ocean.Cells[5, 5].Icon);
         }
@@ -42,15 +45,19 @@ namespace EcoSystem.Test
         {
             //Arrange
             Ocean ocean = new Ocean();
+            Point fishPoint = new Point { X = 5, Y = 5 };
+            Point sharkPoint = new Point { X = 7, Y = 7 };
+            Point blockPoint = new Point { X = 6, Y = 6 };
+            Point cellPoint = new Point { X = 10, Y = 10 };
             //Act
-            ocean.CreateFish(new Point { X = 5, Y = 5 });
-            ocean.CreateBlock(new Point { X = 6, Y = 6 });
-            ocean.CreateShark(new Point { X = 7, Y = 7 });
+            ocean.CreateFish(fishPoint);
+            ocean.CreateBlock(blockPoint);
+            ocean.CreateShark(sharkPoint);
             //Assert
-            Assert.False(ocean.isCell(new Point { X = 5, Y = 5 }));
-            Assert.False(ocean.isCell(new Point { X = 6, Y = 6 }));
-            Assert.False(ocean.isCell(new Point { X = 7, Y = 7 }));
-            Assert.True(ocean.isCell(new Point { X = 10, Y = 10 }));
+            Assert.False(ocean.isCell(fishPoint));
+            Assert.False(ocean.isCell(blockPoint));
+            Assert.False(ocean.isCell(sharkPoint));
+            Assert.True(ocean.isCell(cellPoint));
         }
 
         [Fact]
@@ -58,15 +65,19 @@ namespace EcoSystem.Test
         {
             //Arrange
             Ocean ocean = new Ocean();
+            Point fishPoint = new Point { X = 5, Y = 5 };
+            Point sharkPoint = new Point { X = 7, Y = 7 };
+            Point blockPoint = new Point { X = 6, Y = 6 };
+            Point cellPoint = new Point { X = 10, Y = 10 };
             //Act
-            ocean.CreateFish(new Point { X = 5, Y = 5 });
-            ocean.CreateBlock(new Point { X = 6, Y = 6 });
-            ocean.CreateShark(new Point { X = 7, Y = 7 });
+            ocean.CreateFish(fishPoint);
+            ocean.CreateBlock(blockPoint);
+            ocean.CreateShark(sharkPoint);
             //Assert
-            Assert.True(ocean.isFish(new Point { X = 5, Y = 5 }));
-            Assert.False(ocean.isFish(new Point { X = 6, Y = 6 }));
-            Assert.False(ocean.isFish(new Point { X = 7, Y = 7 }));
-            Assert.False(ocean.isFish(new Point { X = 10, Y = 10 }));
+            Assert.True(ocean.isFish(fishPoint));
+            Assert.False(ocean.isFish(blockPoint));
+            Assert.False(ocean.isFish(sharkPoint));
+            Assert.False(ocean.isFish(cellPoint));
         }
 
         [Fact]
@@ -74,15 +85,19 @@ namespace EcoSystem.Test
         {
             //Arrange
             Ocean ocean = new Ocean();
+            Point fishPoint = new Point { X = 5, Y = 5 };
+            Point sharkPoint = new Point { X = 7, Y = 7 };
+            Point blockPoint = new Point { X = 6, Y = 6 };
+            Point cellPoint = new Point { X = 10, Y = 10 };
             //Act
-            ocean.CreateFish(new Point { X = 5, Y = 5 });
-            ocean.CreateBlock(new Point { X = 6, Y = 6 });
-            ocean.CreateShark(new Point { X = 7, Y = 7 });
+            ocean.CreateFish(fishPoint);
+            ocean.CreateShark(sharkPoint);
+            ocean.CreateBlock(blockPoint);
             //Assert
-            Assert.False(ocean.isShark(new Point { X = 5, Y = 5 }));
-            Assert.False(ocean.isShark(new Point { X = 6, Y = 6 }));
-            Assert.True(ocean.isShark(new Point { X = 7, Y = 7 }));
-            Assert.False(ocean.isShark(new Point { X = 10, Y = 10 }));
+            Assert.False(ocean.isShark(fishPoint));
+            Assert.False(ocean.isShark(blockPoint));
+            Assert.True(ocean.isShark(sharkPoint));
+            Assert.False(ocean.isShark(cellPoint));
         }
 
         [Fact]
@@ -90,15 +105,19 @@ namespace EcoSystem.Test
         {
             //Arrange
             Ocean ocean = new Ocean();
+            Point fishPoint = new Point { X = 5, Y = 5 };
+            Point sharkPoint = new Point { X = 7, Y = 7 };
+            Point blockPoint = new Point { X = 6, Y = 6 };
+            Point cellPoint = new Point { X = 10, Y = 10 };
             //Act
-            ocean.CreateFish(new Point { X = 5, Y = 5 });
-            ocean.CreateBlock(new Point { X = 6, Y = 6 });
-            ocean.CreateShark(new Point { X = 7, Y = 7 });
+            ocean.CreateFish(fishPoint);
+            ocean.CreateShark(sharkPoint);
+            ocean.CreateBlock(blockPoint);
             //Assert
-            Assert.False(ocean.isBlock(new Point { X = 5, Y = 5 }));
-            Assert.True(ocean.isBlock(new Point { X = 6, Y = 6 }));
-            Assert.False(ocean.isBlock(new Point { X = 7, Y = 7 }));
-            Assert.False(ocean.isBlock(new Point { X = 10, Y = 10 }));
+            Assert.False(ocean.isBlock(fishPoint));
+            Assert.True(ocean.isBlock(blockPoint));
+            Assert.False(ocean.isBlock(sharkPoint));
+            Assert.False(ocean.isBlock(cellPoint));
         }
 
         [Fact]
@@ -106,19 +125,22 @@ namespace EcoSystem.Test
         {
             //Arrange
             Ocean ocean = new Ocean();
+            Point fishPoint = new Point { X = 5, Y = 5 };
+            Point sharkPoint = new Point { X = 7, Y = 7 };
+            Point blockPoint = new Point { X = 6, Y = 6 };
 
             //Act
-            ocean.CreateFish(new Point { X = 5, Y = 5 });
-            ocean.CreateBlock(new Point { X = 6, Y = 6 });
-            ocean.CreateShark(new Point { X = 7, Y = 7 });
-            ocean.KillCell(new Point { X = 5, Y = 5 });
-            ocean.KillCell(new Point { X = 6, Y = 6 });
-            ocean.KillCell(new Point { X = 7, Y = 7 });
+            ocean.CreateFish(fishPoint);
+            ocean.CreateBlock(blockPoint);
+            ocean.CreateShark(sharkPoint);
+            ocean.KillCell(fishPoint);
+            ocean.KillCell(blockPoint);
+            ocean.KillCell(sharkPoint);
 
             //Assert
-            Assert.True(ocean.isCell(new Point { X = 5, Y = 5 }));
-            Assert.True(ocean.isCell(new Point { X = 6, Y = 6 }));
-            Assert.True(ocean.isCell(new Point { X = 7, Y = 7 }));
+            Assert.True(ocean.isCell(fishPoint));
+            Assert.True(ocean.isCell(blockPoint));
+            Assert.True(ocean.isCell(sharkPoint));
 
         }
 
@@ -133,14 +155,14 @@ namespace EcoSystem.Test
             ocean.CreateShark(new Point { X = 6, Y = 10 });
 
             //Assert
-            Assert.Equal<char>('F',ocean.Cells[5,10].Icon);
-            Assert.Equal<char>('S',ocean.Cells[6,10].Icon);
+            Assert.Equal<char>('F', ocean.Cells[5, 10].Icon);
+            Assert.Equal<char>('S', ocean.Cells[6, 10].Icon);
 
             for (int i = 0; i < ocean.Width - 1; i++)
             {
                 for (int j = 0; j < ocean.Hight - 1; j++)
                 {
-                    Assert.Equal<Point>(new Point {X = i,Y = j },ocean.Cells[i, j].Position);
+                    Assert.Equal<Point>(new Point { X = i, Y = j }, ocean.Cells[i, j].Position);
                 }
             }
 
