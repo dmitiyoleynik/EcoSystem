@@ -160,11 +160,5 @@ namespace EcoSystem.Test
             }
 
         }
-
-        [Fact]
-        public void PointOutOfRangeTest()
-        {
-
-        }
     }
 }

@@ -9,45 +9,15 @@ namespace EcoSystem
             Ocean ocean = new Ocean();
             ocean.Print();
             Console.ReadKey();
-            ocean.PopulateOcean(50,10,10);
+            ocean.PopulateOcean(50,50,20);
             ocean.Print();
-        }
-
-        /// <summary>
-        /// Method need to test Fish.LifeCicleStep() manually
-        /// I know that sometimes fish doesn't do any actions
-        /// and sometimes it makes two actions like do up twice
-        /// or go up and right or like that
-        /// It's because of foreach method that can execute this method twice
-        /// but I don't think that it is a mistake
-        /// </summary>
-        static void CircleTest()
-        {
-            //Arrange
-            Ocean ocean = new Ocean(20,20);
-            Point testingPoint = new Point();
-            testingPoint.X = 5;
-            testingPoint.Y = 5;
-
-            //Act
-            ocean.CreateFish(testingPoint);
 
             while (true)
             {
-                foreach (Cell item in ocean.Cells)
-                {
-                    if(item is Fish)
-                    {
-                        (item as Fish).LifeCicleStep();
-                    }
-                }
-                ocean.Print();
                 Console.ReadKey();
+                ocean.Run();
+                ocean.Print();
             }
-
-
-
         }
-
     }
 }

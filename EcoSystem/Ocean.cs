@@ -37,6 +37,25 @@ namespace EcoSystem
                 }
             }
         }
+        public void Run(int iter = 1)
+        {
+            for (int i = 0; i < iter; i++)
+            {
+                foreach (Cell item in cells)
+                {
+                    if (isFish(item.Position))
+                    {
+                        (item as Fish).LifeCicleStep();
+                    }
+
+                    if (isShark(item.Position))
+                    {
+                        (item as Shark).LifeCicleStep();
+                    }
+                }
+            }
+        }
+
         public void PopulateOcean(int blocksNumber, int fishesNumber, int sharksNumber)
         {
             SetBlocksRandom(blocksNumber);
@@ -145,6 +164,11 @@ namespace EcoSystem
         }
         public bool isFish(Point p)
         {
+            if (PointOutOfRange(p))
+            {
+                return false;
+            }
+
             if (cells[p.X, p.Y] is Fish && !(cells[p.X, p.Y] is Shark))
             {
                 return true;
@@ -153,6 +177,11 @@ namespace EcoSystem
         }
         public bool isShark(Point p)
         {
+            if (PointOutOfRange(p))
+            {
+                return false;
+            }
+
             if (cells[p.X, p.Y] is Shark)
             {
                 return true;
@@ -161,6 +190,11 @@ namespace EcoSystem
         }
         public bool isBlock(Point p)
         {
+            if (PointOutOfRange(p))
+            {
+                return false;
+            }
+
             if (cells[p.X, p.Y] is Block)
             {
                 return true;
