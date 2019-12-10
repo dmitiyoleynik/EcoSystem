@@ -14,101 +14,66 @@ namespace EcoSystem
         private int blocksNumber = 0;
         private int timeToFishReproduce;
         private Random rand = new Random();
+        
 
         public Cell[,] Cells { get => cells; }
-        public int Width { get; }
-        public int Hight { get; }
         public int FishNumber { get => fishesNumber; set => fishesNumber = value; }
         public int SharkNumber { get => sharksNumber; set => sharksNumber = value; }
         public int BlocksNumber { get => blocksNumber; set => blocksNumber = value; }
+        public int Hight { get => hight; set => hight = value; }
+        public int Width { get => width; set => width = value; }
 
         public Ocean(int width = 120, int hight = 25, int timeToReproduce = 30)
         {
-            this.width = width;
-            this.hight = hight;
+            this.Width = width;
+            this.Hight = hight;
             this.timeToFishReproduce = timeToReproduce;
             cells = new Cell[width, hight];
             Clear();
         }
+        
         private void Clear()
         {
-            for (int i = 0; i < width; i++)
+            for (int i = 0; i < Width; i++)
             {
-                for (int j = 0; j < hight; j++)
+                for (int j = 0; j < Hight; j++)
                 {
                     cells[i, j] = null;
                 }
             }
         }
-        public void Run(int iter = 1)
-        {
-            for (int i = 0; i < iter; i++)
-            {
-                foreach (Cell item in cells)
-                {
-                    if (item==null)
-                    {
-                        continue;
-                    }
+        //public void Run(int iter = 1)
+        //{
+        //    for (int i = 0; i < iter; i++)
+        //    {
+        //        foreach (Cell item in cells)
+        //        {
+        //            if (item==null)
+        //            {
+        //                continue;
+        //            }
 
-                    if (isFish(item.Position))
-                    {
-                        (item as Fish).LifeCicleStep();
-                    }
+        //            if (isFish(item.Position))
+        //            {
+        //                (item as Fish).LifeCicleStep();
+        //            }
 
-                    if (isShark(item.Position))
-                    {
-                        (item as Shark).LifeCicleStep();
-                    }
-                }
-            }
-        }
+        //            if (isShark(item.Position))
+        //            {
+        //                (item as Shark).LifeCicleStep();
+        //            }
+        //        }
+        //    }
+        //}
 
-        public void PopulateOcean(int blocksNumber, int fishesNumber, int sharksNumber)
+        public void PopulateOcean(IInitializer initializer)
         {
-            SetBlocksRandom(blocksNumber);
-            SetFishesRandom(fishesNumber);
-            SetSharksRandom(sharksNumber);
+            initializer.Initialize(cells, Width, Hight);
         }
-        public void SetSharksRandom(int number)
-        {
-            for (int i = 0; i < number; i++)
-            {
-                int x = rand.Next(0, width);
-                int y = rand.Next(0, hight);
-                if (isCell(new Point { X = x, Y = y }))
-                {
-                    CreateShark(new Point { X = x, Y = y });
-                }
-            }
-        }
-        public void SetFishesRandom(int number)
-        {
-            for (int i = 0; i < number; i++)
-            {
-                int x = rand.Next(0, width);
-                int y = rand.Next(0, hight);
-                if (isCell(new Point { X = x, Y = y }))
-                {
-                    CreateFish(new Point { X = x, Y = y });
-                }
-            }
-        }
-        public void SetBlocksRandom(int number)
-        {
-            for (int i = 0; i < number; i++)
-            {
-                int x = rand.Next(0, width);
-                int y = rand.Next(0, hight);
-                if (isCell(new Point { X = x, Y = y }))
-                {
-                    CreateBlock(new Point { X = x, Y = y });
-                }
-            }
-        }
+        
         public bool PointOutOfRange(Point p)
         {
-            if (p.X >= width || p.Y >= hight || p.X < 0 || p.Y < 0)
+            if (p.X >= Width || p.Y >= Hight || p.X < 0 || p.Y < 0)
             {
                 return true;
             }
@@ -148,9 +113,9 @@ namespace EcoSystem
         {
             char ico;
             Console.Clear();
-            for (int i = 0; i < hight; i++)
+            for (int i = 0; i < Hight; i++)
             {
-                for (int j = 0; j < width; j++)
+                for (int j = 0; j < Width; j++)
                 {
                     ico = '-';
                     if (cells[j, i] != null)

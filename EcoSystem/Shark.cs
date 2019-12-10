@@ -20,6 +20,11 @@ namespace EcoSystem
             isCell += cell;
             isFish += fish;
         }
+        //public Shark(Point p, int reproduceTime = 45, int dieTime = 30) : base(p)
+        //{
+        //    this.Icon = 'S';
+
+        //}
 
         public void EatFish(Direction dir)
         {
