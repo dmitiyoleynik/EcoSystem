@@ -7,8 +7,11 @@ namespace EcoSystem
     public class Ocean
     {
         private Cell[,] cells;
-        private int width, hight;
-        private int fishesNumber = 0, sharksNumber = 0, blocksNumber = 0;
+        private int width;
+        private int hight;
+        private int fishesNumber = 0;
+        private int sharksNumber = 0;
+        private int blocksNumber = 0;
         private int timeToFishReproduce;
         private Random rand = new Random();
 
