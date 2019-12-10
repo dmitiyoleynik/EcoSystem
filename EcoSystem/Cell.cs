@@ -4,7 +4,7 @@ using System.Text;
 
 namespace EcoSystem
 {
-    public class Cell
+    abstract public class Cell
     {
         protected Point position;
         public char Icon { get; set; }

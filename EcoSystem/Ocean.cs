@@ -33,7 +33,7 @@ namespace EcoSystem
             {
                 for (int j = 0; j < hight; j++)
                 {
-                    cells[i, j] = new Cell(i, j);
+                    cells[i, j] = null;
                 }
             }
         }
@@ -43,6 +43,11 @@ namespace EcoSystem
             {
                 foreach (Cell item in cells)
                 {
+                    if (item==null)
+                    {
+                        continue;
+                    }
+
                     if (isFish(item.Position))
                     {
                         (item as Fish).LifeCicleStep();
@@ -138,12 +143,18 @@ namespace EcoSystem
         }
         public void Print()
         {
+            char ico;
             Console.Clear();
             for (int i = 0; i < hight; i++)
             {
                 for (int j = 0; j < width; j++)
                 {
-                    Console.Write(cells[j, i].Icon);
+                    ico = '-';
+                    if (cells[j, i] != null)
+                    {
+                        ico = cells[j, i].Icon;
+                    }
+                        Console.Write(ico);
                 }
                 Console.WriteLine();
             }
@@ -156,11 +167,8 @@ namespace EcoSystem
                 return false;
             }
 
-            if (cells[p.X, p.Y] is Fish || cells[p.X, p.Y] is Shark || cells[p.X, p.Y] is Block)
-            {
-                return false;
-            }
-            return true;
+            return cells[p.X, p.Y] == null;
+
         }
         public bool isFish(Point p)
         {
@@ -211,8 +219,14 @@ namespace EcoSystem
             Cell tmp = cells[p1.X, p1.Y];
             cells[p1.X, p1.Y] = cells[p2.X, p2.Y];
             cells[p2.X, p2.Y] = tmp;
-            cells[p1.X, p1.Y].Position = p1;
-            cells[p2.X, p2.Y].Position = p2;
+            if (!isCell(p1))
+            {
+                cells[p1.X, p1.Y].Position = p1;
+            }
+            if (!isCell(p2))
+            {
+                cells[p2.X, p2.Y].Position = p2;
+            }
 
         }
         public void KillCell(Point p)
@@ -230,7 +244,7 @@ namespace EcoSystem
             {
                 sharksNumber--;
             }
-            cells[p.X, p.Y] = new Cell(p);
+            cells[p.X, p.Y] = null;
 
         }
         public Direction GetRandomDirection()
