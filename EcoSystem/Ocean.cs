@@ -36,13 +36,13 @@ namespace EcoSystem
         public int FishNumber { get => _fishesNumber; set => _fishesNumber = value; }
         public int SharkNumber { get => _sharksNumber; set => _sharksNumber = value; }
         public int BlocksNumber { get => _blocksNumber; set => _blocksNumber = value; }
-        public int Hight { get => _hight; set => _hight = value; }
-        public int Width { get => _width; set => _width = value; }
+        public int Hight { get => _hight;  }
+        public int Width { get => _width; }
 
         public Ocean(int width = 120, int hight = 25, int timeToReproduce = 30)
         {
-            this.Width = width;
-            this.Hight = hight;
+            _width = width;
+            _hight = hight;
             this._timeToFishReproduce = timeToReproduce;
             _cells = new Cell[width, hight];
             Clear();
