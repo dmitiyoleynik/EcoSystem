@@ -33,9 +33,9 @@ namespace EcoSystem
             }
         }
 
-        public int FishNumber { get => _fishesNumber; set => _fishesNumber = value; }
-        public int SharkNumber { get => _sharksNumber; set => _sharksNumber = value; }
-        public int BlocksNumber { get => _blocksNumber; set => _blocksNumber = value; }
+        public int FishNumber { get => _fishesNumber; }
+        public int SharkNumber { get => _sharksNumber; }
+        public int BlocksNumber { get => _blocksNumber; }
         public int Hight { get => _hight;  }
         public int Width { get => _width; }
 
