@@ -23,7 +23,7 @@ namespace EcoSystem.Test
                 ocean.CreateShark(testingPoint);
 
                 //Act
-                (ocean.Cells[testingPoint.X, testingPoint.Y] as Shark).Move(dir);
+                (ocean[testingPoint.X, testingPoint.Y] as Shark).Move(dir);
 
                 //Assert
                 Assert.True(ocean.isCell(testingPoint));
@@ -47,7 +47,7 @@ namespace EcoSystem.Test
             foreach (Direction dir in dirs)
             {
                 //Act
-                (ocean.Cells[testingPoint.X, testingPoint.Y] as Shark).Reproduce(dir);
+                (ocean[testingPoint.X, testingPoint.Y] as Shark).Reproduce(dir);
 
                 //Assert
                 Assert.True(ocean.isShark(testingPoint));
@@ -66,7 +66,7 @@ namespace EcoSystem.Test
             ocean.CreateShark(testingPoint);
 
             //Act
-            (ocean.Cells[testingPoint.X, testingPoint.Y] as Shark).Die();
+            (ocean[testingPoint.X, testingPoint.Y] as Shark).Die();
 
             //Assert
             Assert.False(ocean.isShark(testingPoint));
@@ -84,7 +84,7 @@ namespace EcoSystem.Test
             ocean.CreateFish(testingPoint+dir);
 
             //Act
-            (ocean.Cells[testingPoint.X, testingPoint.Y] as Shark).EatFish(dir);
+            (ocean[testingPoint.X, testingPoint.Y] as Shark).EatFish(dir);
 
             //Assert
             Assert.True(ocean.isCell(testingPoint));

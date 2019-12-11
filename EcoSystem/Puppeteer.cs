@@ -15,7 +15,7 @@ namespace EcoSystem
         public Puppeteer()
         {
             _ocean = new Ocean();
-            _fishCreator = new FishCreator(_ocean.Cells, _ocean.Width, _ocean.Hight,_ocean.SwopCell,_ocean.GetRandomDirection,_ocean.KillCell,_ocean.isFish);
+            _fishCreator = new FishCreator(/*_ocean.Cells*/_ocean, _ocean.Width, _ocean.Hight,_ocean.SwopCell,_ocean.GetRandomDirection,_ocean.KillCell,_ocean.isFish);
             _initializer = new RandomInitializer(_fishCreator);
         }
         public void PrintOcean()
@@ -30,7 +30,7 @@ namespace EcoSystem
         {
             for (int i = 0; i < iter; i++)
             {
-                foreach (Cell item in _ocean.Cells)
+                foreach (Cell item in _ocean)
                 {
                     if (item == null)
                     {
@@ -52,8 +52,8 @@ namespace EcoSystem
         public void Test()
         {
             _fishCreator.CreateFish(new Point { X = 5, Y = 5 });
-            (_ocean.Cells[5, 5] as Fish).Move(Direction.Up);
-            (_ocean.Cells[5, 4] as Fish).Reproduce(Direction.Up);
+            (_ocean[5, 5] as Fish).Move(Direction.Up);
+            (_ocean[5, 4] as Fish).Reproduce(Direction.Up);
         }
 
     }

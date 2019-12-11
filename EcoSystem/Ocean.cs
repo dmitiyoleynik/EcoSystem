@@ -1,13 +1,14 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Text;
 
 namespace EcoSystem
 {
-    public class Ocean
+    public class Ocean:IEnumerable
     {
         #region variables 
-        private Cell[,] cells;
+        private Cell[,] _cells;
         private int _width;
         private int _hight;
         private int _fishesNumber = 0;
@@ -18,7 +19,20 @@ namespace EcoSystem
         #endregion
         
 
-        public Cell[,] Cells { get => cells; }
+        //public Cell[,] Cells { get => _cells; }
+
+        public Cell this[int x,int y]
+        {
+            get
+            {
+                return _cells[x, y];
+            }
+            set
+            {
+                _cells[x, y] = value;
+            }
+        }
+
         public int FishNumber { get => _fishesNumber; set => _fishesNumber = value; }
         public int SharkNumber { get => _sharksNumber; set => _sharksNumber = value; }
         public int BlocksNumber { get => _blocksNumber; set => _blocksNumber = value; }
@@ -30,7 +44,7 @@ namespace EcoSystem
             this.Width = width;
             this.Hight = hight;
             this._timeToFishReproduce = timeToReproduce;
-            cells = new Cell[width, hight];
+            _cells = new Cell[width, hight];
             Clear();
         }
         
@@ -40,7 +54,7 @@ namespace EcoSystem
             {
                 for (int j = 0; j < Hight; j++)
                 {
-                    cells[i, j] = null;
+                    _cells[i, j] = null;
                 }
             }
         }
@@ -70,7 +84,7 @@ namespace EcoSystem
 
         public void PopulateOcean(IInitializer initializer)
         {
-            initializer.Initialize(cells, Width, Hight);
+            initializer.Initialize(_cells, Width, Hight);
         }
         
         public bool PointOutOfRange(Point p)
@@ -88,7 +102,7 @@ namespace EcoSystem
                 return;
             }
 
-            cells[p.X, p.Y] = new Block(p);
+            _cells[p.X, p.Y] = new Block(p);
             _blocksNumber++;
         }
         public void CreateFish(Point p)
@@ -98,7 +112,7 @@ namespace EcoSystem
                 return;
             }
 
-            cells[p.X, p.Y] = new Fish(p, SwopCell, CreateFish, GetRandomDirection, isCell, KillCell);
+            _cells[p.X, p.Y] = new Fish(p, SwopCell, CreateFish, GetRandomDirection, isCell, KillCell);
             _fishesNumber++;
         }
         public void CreateShark(Point p)
@@ -108,7 +122,7 @@ namespace EcoSystem
                 return;
             }
 
-            cells[p.X, p.Y] = new Shark(p, SwopCell, CreateShark, GetRandomDirection, isCell, KillCell, isFish);
+            _cells[p.X, p.Y] = new Shark(p, SwopCell, CreateShark, GetRandomDirection, isCell, KillCell, isFish);
             _sharksNumber++;
         }
         public void Print()
@@ -120,9 +134,9 @@ namespace EcoSystem
                 for (int j = 0; j < Width; j++)
                 {
                     ico = '-';
-                    if (cells[j, i] != null)
+                    if (_cells[j, i] != null)
                     {
-                        ico = cells[j, i].Icon;
+                        ico = _cells[j, i].Icon;
                     }
                         Console.Write(ico);
                 }
@@ -137,7 +151,7 @@ namespace EcoSystem
                 return false;
             }
 
-            return cells[p.X, p.Y] == null;
+            return _cells[p.X, p.Y] == null;
 
         }
         public bool isFish(Point p)
@@ -147,7 +161,7 @@ namespace EcoSystem
                 return false;
             }
 
-            if (cells[p.X, p.Y] is Fish && !(cells[p.X, p.Y] is Shark))
+            if (_cells[p.X, p.Y] is Fish && !(_cells[p.X, p.Y] is Shark))
             {
                 return true;
             }
@@ -160,7 +174,7 @@ namespace EcoSystem
                 return false;
             }
 
-            if (cells[p.X, p.Y] is Shark)
+            if (_cells[p.X, p.Y] is Shark)
             {
                 return true;
             }
@@ -173,7 +187,7 @@ namespace EcoSystem
                 return false;
             }
 
-            if (cells[p.X, p.Y] is Block)
+            if (_cells[p.X, p.Y] is Block)
             {
                 return true;
             }
@@ -186,16 +200,16 @@ namespace EcoSystem
                 return;
             }
 
-            Cell tmp = cells[p1.X, p1.Y];
-            cells[p1.X, p1.Y] = cells[p2.X, p2.Y];
-            cells[p2.X, p2.Y] = tmp;
+            Cell tmp = _cells[p1.X, p1.Y];
+            _cells[p1.X, p1.Y] = _cells[p2.X, p2.Y];
+            _cells[p2.X, p2.Y] = tmp;
             if (!isCell(p1))
             {
-                cells[p1.X, p1.Y].Position = p1;
+                _cells[p1.X, p1.Y].Position = p1;
             }
             if (!isCell(p2))
             {
-                cells[p2.X, p2.Y].Position = p2;
+                _cells[p2.X, p2.Y].Position = p2;
             }
 
         }
@@ -214,7 +228,7 @@ namespace EcoSystem
             {
                 _sharksNumber--;
             }
-            cells[p.X, p.Y] = null;
+            _cells[p.X, p.Y] = null;
 
         }
         public Direction GetRandomDirection()
@@ -222,5 +236,9 @@ namespace EcoSystem
             return (Direction)(_rand.Next(0, 1000) % 4 + 1);
         }
 
+        public IEnumerator GetEnumerator()
+        {
+            return _cells.GetEnumerator();
+        }
     }
 }

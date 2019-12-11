@@ -24,7 +24,7 @@ namespace EcoSystem.Test
                 ocean.CreateFish(testingPoint);
 
                 //Act
-                (ocean.Cells[testingPoint.X, testingPoint.Y] as Fish).Move(dir);
+                (ocean[testingPoint.X, testingPoint.Y] as Fish).Move(dir);
 
                 //Assert
                 Assert.True(ocean.isCell(testingPoint));
@@ -48,7 +48,7 @@ namespace EcoSystem.Test
             foreach (Direction dir in dirs)
             {
                 //Act
-                (ocean.Cells[testingPoint.X, testingPoint.Y] as Fish).Reproduce(dir);
+                (ocean[testingPoint.X, testingPoint.Y] as Fish).Reproduce(dir);
 
                 //Assert
                 Assert.True(ocean.isFish(testingPoint));
@@ -68,7 +68,7 @@ namespace EcoSystem.Test
             ocean.CreateFish(testingPoint);
 
             //Act
-            (ocean.Cells[testingPoint.X, testingPoint.Y] as Fish).Die();
+            (ocean[testingPoint.X, testingPoint.Y] as Fish).Die();
 
             //Assert
             Assert.False(ocean.isFish(testingPoint));

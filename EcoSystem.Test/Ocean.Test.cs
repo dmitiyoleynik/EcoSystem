@@ -16,7 +16,7 @@ namespace EcoSystem.Test
             //Act
             ocean.CreateFish(testPoint);
             //Assert
-            Assert.Equal<char>('F', ocean.Cells[5, 5].Icon);
+            Assert.Equal<char>('F', ocean[5, 5].Icon);
         }
         [Fact]
         public void CreateSharkTest()
@@ -27,7 +27,7 @@ namespace EcoSystem.Test
             //Act
             ocean.CreateShark(testPoint);
             //Assert
-            Assert.Equal<char>('S', ocean.Cells[5, 5].Icon);
+            Assert.Equal<char>('S', ocean[5, 5].Icon);
         }
         [Fact]
         public void CreateBlockTest()
@@ -38,7 +38,7 @@ namespace EcoSystem.Test
             //Act
             ocean.CreateBlock(testPoint);
             //Assert
-            Assert.Equal<char>('#', ocean.Cells[5, 5].Icon);
+            Assert.Equal<char>('#', ocean[5, 5].Icon);
         }
         [Fact]
         public void isCellTest()
@@ -155,16 +155,16 @@ namespace EcoSystem.Test
             ocean.CreateShark(new Point { X = 6, Y = 10 });
 
             //Assert
-            Assert.Equal<char>('F', ocean.Cells[5, 10].Icon);
-            Assert.Equal<char>('S', ocean.Cells[6, 10].Icon);
+            Assert.Equal<char>('F', ocean[5, 10].Icon);
+            Assert.Equal<char>('S', ocean[6, 10].Icon);
 
             for (int i = 0; i < ocean.Width - 1; i++)
             {
                 for (int j = 0; j < ocean.Hight - 1; j++)
                 {
-                    if(ocean.Cells[i, j] != null)
+                    if(ocean[i, j] != null)
                     {
-                        Assert.Equal<Point>(new Point { X = i, Y = j }, ocean.Cells[i, j].Position);
+                        Assert.Equal<Point>(new Point { X = i, Y = j }, ocean[i, j].Position);
                     }
                 }
             }
@@ -173,16 +173,16 @@ namespace EcoSystem.Test
             ocean.SwopCell(new Point { X = 5, Y = 10 }, new Point { X = 6, Y = 10 });
 
             //Assert2
-            Assert.Equal<char>('S', ocean.Cells[5, 10].Icon);
-            Assert.Equal<char>('F', ocean.Cells[6, 10].Icon);
+            Assert.Equal<char>('S', ocean[5, 10].Icon);
+            Assert.Equal<char>('F', ocean[6, 10].Icon);
 
             for (int i = 0; i < ocean.Width - 1; i++)
             {
                 for (int j = 0; j < ocean.Hight - 1; j++)
                 {
-                    if (ocean.Cells[i, j] != null)
+                    if (ocean[i, j] != null)
                     {
-                        Assert.Equal<Point>(new Point { X = i, Y = j }, ocean.Cells[i, j].Position);
+                        Assert.Equal<Point>(new Point { X = i, Y = j }, ocean[i, j].Position);
                     }
                 }
             }

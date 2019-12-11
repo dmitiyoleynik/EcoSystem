@@ -7,7 +7,8 @@ namespace EcoSystem
     class FishCreator : IFishCreator
     {
         #region variables 
-        Cell[,] _cells;
+        //Cell[,] _cells;
+        Ocean _ocean;
         int _widthRange;
         int _higthRange;
         SwopCell swopCell;
@@ -16,9 +17,10 @@ namespace EcoSystem
         checkCell isFish;
         #endregion
 
-        public FishCreator(Cell[,] cells, int widthRange, int higthRange,/* */SwopCell swop,GetRandomDirection getRandom,KillCell kill, checkCell fish)
+        public FishCreator(/*Cell[,] cells*/Ocean ocean, int widthRange, int higthRange,/* */SwopCell swop,GetRandomDirection getRandom,KillCell kill, checkCell fish)
         {
-            _cells = cells;
+            //_cells = cells;
+            _ocean = ocean;
             _widthRange = widthRange;
             _higthRange = higthRange;
             swopCell = swop;
@@ -42,7 +44,7 @@ namespace EcoSystem
                 return;
             }
 
-            _cells[p.X, p.Y] = new Block(p);
+            _ocean[p.X, p.Y] = new Block(p);
             //blocksNumber++;
         }
 
@@ -53,7 +55,7 @@ namespace EcoSystem
                 return;
             }
 
-            _cells[p.X, p.Y] = new Fish(p,swopCell,CreateFish,randomDirection,isCell,killCell);//, SwopCell, /*CreateFish*/, GetRandomDirection, /*isCell*/, KillCell
+            _ocean[p.X, p.Y] = new Fish(p,swopCell,CreateFish,randomDirection,isCell,killCell);//, SwopCell, /*CreateFish*/, GetRandomDirection, /*isCell*/, KillCell
             //fishesNumber++;
         }
 
@@ -64,7 +66,7 @@ namespace EcoSystem
                 return;
             }
 
-            _cells[p.X, p.Y] = new Shark(p,swopCell, CreateShark, randomDirection,isCell,killCell,isFish);//, SwopCell, CreateShark, GetRandomDirection, isCell, KillCell, isFish
+            _ocean[p.X, p.Y] = new Shark(p,swopCell, CreateShark, randomDirection,isCell,killCell,isFish);//, SwopCell, CreateShark, GetRandomDirection, isCell, KillCell, isFish
             //sharksNumber++;
         }
 
@@ -75,7 +77,7 @@ namespace EcoSystem
                 return false;
             }
 
-            return _cells[p.X, p.Y] == null;
+            return _ocean[p.X, p.Y] == null;
         }
 
     }
