@@ -6,7 +6,7 @@ namespace EcoSystem
 {
     public class Shark : Fish
     {
-        private int CurrentTimeToDie;
+        private int _currentTimeToDie;
         public new event GetRandomDirection GetDir;
         public new event KillCell Kill;
         public event checkCell isFish;
@@ -28,30 +28,30 @@ namespace EcoSystem
 
         public void EatFish(Direction dir)
         {
-            Kill(position+dir);
-            CurrentTimeToDie = timeToDie;
+            Kill(_position+dir);
+            _currentTimeToDie = _timeToDie;
             Move(dir);
         }
         public new void LifeCicleStep()
         {
-            CurrentTime++;
-            CurrentTimeToDie++;
+            _currentTime++;
+            _currentTimeToDie++;
             Direction direct = GetDir();
 
-            if (CurrentTime >= timeToDie)
+            if (_currentTime >= _timeToDie)
             {
                 Die();
                 return;
             }
 
-            if (isFish(position+direct))
+            if (isFish(_position+direct))
             {
                 EatFish(direct);
             }
 
-            if (CurrentTime >= timeToReproduce)
+            if (_currentTime >= _timeToReproduce)
             {
-                CurrentTime = 0;
+                _currentTime = 0;
                 Reproduce(direct);
             }
             else

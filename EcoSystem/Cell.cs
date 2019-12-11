@@ -6,19 +6,19 @@ namespace EcoSystem
 {
     abstract public class Cell
     {
-        protected Point position;
+        protected Point _position;
         public char Icon { get; set; }
-        public Point Position { get => position; set => position = value; }
+        public Point Position { get => _position; set => _position = value; }
 
         public Cell(Point p)
         {
-            position = p;
+            _position = p;
             Icon = '-';
         }
         public Cell(int x,int y)
         {
-            position.X = x;
-            position.Y = y;
+            _position.X = x;
+            _position.Y = y;
             Icon = '-';
         }
     }

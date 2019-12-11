@@ -7,27 +7,27 @@ namespace EcoSystem
     public class Ocean
     {
         private Cell[,] cells;
-        private int width;
-        private int hight;
-        private int fishesNumber = 0;
-        private int sharksNumber = 0;
-        private int blocksNumber = 0;
-        private int timeToFishReproduce;
-        private Random rand = new Random();
+        private int _width;
+        private int _hight;
+        private int _fishesNumber = 0;
+        private int _sharksNumber = 0;
+        private int _blocksNumber = 0;
+        private int _timeToFishReproduce;
+        private Random _rand = new Random();
         
 
         public Cell[,] Cells { get => cells; }
-        public int FishNumber { get => fishesNumber; set => fishesNumber = value; }
-        public int SharkNumber { get => sharksNumber; set => sharksNumber = value; }
-        public int BlocksNumber { get => blocksNumber; set => blocksNumber = value; }
-        public int Hight { get => hight; set => hight = value; }
-        public int Width { get => width; set => width = value; }
+        public int FishNumber { get => _fishesNumber; set => _fishesNumber = value; }
+        public int SharkNumber { get => _sharksNumber; set => _sharksNumber = value; }
+        public int BlocksNumber { get => _blocksNumber; set => _blocksNumber = value; }
+        public int Hight { get => _hight; set => _hight = value; }
+        public int Width { get => _width; set => _width = value; }
 
         public Ocean(int width = 120, int hight = 25, int timeToReproduce = 30)
         {
             this.Width = width;
             this.Hight = hight;
-            this.timeToFishReproduce = timeToReproduce;
+            this._timeToFishReproduce = timeToReproduce;
             cells = new Cell[width, hight];
             Clear();
         }
@@ -87,7 +87,7 @@ namespace EcoSystem
             }
 
             cells[p.X, p.Y] = new Block(p);
-            blocksNumber++;
+            _blocksNumber++;
         }
         public void CreateFish(Point p)
         {
@@ -97,7 +97,7 @@ namespace EcoSystem
             }
 
             cells[p.X, p.Y] = new Fish(p, SwopCell, CreateFish, GetRandomDirection, isCell, KillCell);
-            fishesNumber++;
+            _fishesNumber++;
         }
         public void CreateShark(Point p)
         {
@@ -107,7 +107,7 @@ namespace EcoSystem
             }
 
             cells[p.X, p.Y] = new Shark(p, SwopCell, CreateShark, GetRandomDirection, isCell, KillCell, isFish);
-            sharksNumber++;
+            _sharksNumber++;
         }
         public void Print()
         {
@@ -126,7 +126,7 @@ namespace EcoSystem
                 }
                 Console.WriteLine();
             }
-            Console.WriteLine($"Blocks: {blocksNumber}, sharks: {sharksNumber}, fishes: {fishesNumber}");
+            Console.WriteLine($"Blocks: {_blocksNumber}, sharks: {_sharksNumber}, fishes: {_fishesNumber}");
         }
         public bool isCell(Point p)
         {
@@ -206,18 +206,18 @@ namespace EcoSystem
 
             if (isFish(p))
             {
-                fishesNumber--;
+                _fishesNumber--;
             }
             if (isShark(p))
             {
-                sharksNumber--;
+                _sharksNumber--;
             }
             cells[p.X, p.Y] = null;
 
         }
         public Direction GetRandomDirection()
         {
-            return (Direction)(rand.Next(0, 1000) % 4 + 1);
+            return (Direction)(_rand.Next(0, 1000) % 4 + 1);
         }
 
     }

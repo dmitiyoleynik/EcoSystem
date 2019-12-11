@@ -162,7 +162,10 @@ namespace EcoSystem.Test
             {
                 for (int j = 0; j < ocean.Hight - 1; j++)
                 {
-                    Assert.Equal<Point>(new Point { X = i, Y = j }, ocean.Cells[i, j].Position);
+                    if(ocean.Cells[i, j] != null)
+                    {
+                        Assert.Equal<Point>(new Point { X = i, Y = j }, ocean.Cells[i, j].Position);
+                    }
                 }
             }
 
@@ -177,7 +180,10 @@ namespace EcoSystem.Test
             {
                 for (int j = 0; j < ocean.Hight - 1; j++)
                 {
-                    Assert.Equal<Point>(new Point { X = i, Y = j }, ocean.Cells[i, j].Position);
+                    if (ocean.Cells[i, j] != null)
+                    {
+                        Assert.Equal<Point>(new Point { X = i, Y = j }, ocean.Cells[i, j].Position);
+                    }
                 }
             }
 

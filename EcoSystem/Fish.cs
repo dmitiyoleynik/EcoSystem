@@ -6,9 +6,9 @@ namespace EcoSystem
 {
     public class Fish : Cell
     {
-        protected int timeToReproduce;
-        protected int timeToDie;
-        protected int CurrentTime = 0;
+        protected int _timeToReproduce;
+        protected int _timeToDie;
+        protected int _currentTime = 0;
         //public delegate void SwopCell(Point p1, Point p2);
         public event SwopCell Swop;
         public delegate void CreateFish(Point p);
@@ -23,8 +23,8 @@ namespace EcoSystem
 
         public Fish(Point p, SwopCell swop, CreateFish create, GetRandomDirection dir, checkCell cell, KillCell kill, int reproduceTime = 30, int dieTime = 45) : base(p)
         {
-            this.timeToReproduce = reproduceTime;
-            this.timeToDie = dieTime;
+            this._timeToReproduce = reproduceTime;
+            this._timeToDie = dieTime;
             this.Icon = 'F';
             Swop += swop;
             NewInstance += create;
@@ -41,33 +41,33 @@ namespace EcoSystem
         //}
         public void Move(Direction d)
         {
-            Swop(position, position + d);
+            Swop(_position, _position + d);
         }
         public void Die()
         {
-            Kill(this.position);
+            Kill(this._position);
         }
         public void Reproduce(Direction d)
         {
-            NewInstance(position + d);
+            NewInstance(_position + d);
         }
         public void LifeCicleStep()
         {
-            CurrentTime++;
+            _currentTime++;
             Direction direct = GetDir();
-            if (!isCell(position + direct))
+            if (!isCell(_position + direct))
             {
                 return;
             }
-            if (CurrentTime >= timeToDie)
+            if (_currentTime >= _timeToDie)
             {
                 Die();
                 return;
             }
 
-            if (CurrentTime >= timeToReproduce)
+            if (_currentTime >= _timeToReproduce)
             {
-                CurrentTime = 0;
+                _currentTime = 0;
                 Reproduce(direct);
             }
             else

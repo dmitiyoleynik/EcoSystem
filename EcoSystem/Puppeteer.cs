@@ -6,41 +6,41 @@ namespace EcoSystem
 {
     class Puppeteer
     {
-        private Ocean ocean;
-        private FishCreator fishCreator;
-        private IInitializer initializer;
+        private Ocean _ocean;
+        private FishCreator _fishCreator;
+        private IInitializer _initializer;
 
         public Puppeteer()
         {
-            ocean = new Ocean();
-            fishCreator = new FishCreator(ocean.Cells, ocean.Width, ocean.Hight,ocean.SwopCell,ocean.GetRandomDirection,ocean.KillCell,ocean.isFish);
-            initializer = new RandomInitializer(fishCreator);
+            _ocean = new Ocean();
+            _fishCreator = new FishCreator(_ocean.Cells, _ocean.Width, _ocean.Hight,_ocean.SwopCell,_ocean.GetRandomDirection,_ocean.KillCell,_ocean.isFish);
+            _initializer = new RandomInitializer(_fishCreator);
         }
         public void PrintOcean()
         {
-            ocean.Print();
+            _ocean.Print();
         }
         public void InitOcean()
         {
-            ocean.PopulateOcean(initializer);
+            _ocean.PopulateOcean(_initializer);
         }
         public void Play(int iter = 1)
         {
             for (int i = 0; i < iter; i++)
             {
-                foreach (Cell item in ocean.Cells)
+                foreach (Cell item in _ocean.Cells)
                 {
                     if (item == null)
                     {
                         continue;
                     }
 
-                    if (ocean.isFish(item.Position))
+                    if (_ocean.isFish(item.Position))
                     {
                         (item as Fish).LifeCicleStep();
                     }
 
-                    if (ocean.isShark(item.Position))
+                    if (_ocean.isShark(item.Position))
                     {
                         (item as Shark).LifeCicleStep();
                     }
@@ -49,9 +49,9 @@ namespace EcoSystem
         }
         public void Test()
         {
-            fishCreator.CreateFish(new Point { X = 5, Y = 5 });
-            (ocean.Cells[5, 5] as Fish).Move(Direction.Up);
-            (ocean.Cells[5, 4] as Fish).Reproduce(Direction.Up);
+            _fishCreator.CreateFish(new Point { X = 5, Y = 5 });
+            (_ocean.Cells[5, 5] as Fish).Move(Direction.Up);
+            (_ocean.Cells[5, 4] as Fish).Reproduce(Direction.Up);
         }
 
     }

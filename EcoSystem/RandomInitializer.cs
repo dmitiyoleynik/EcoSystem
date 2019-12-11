@@ -6,7 +6,7 @@ namespace EcoSystem
 {
     class RandomInitializer: IInitializer
     {
-        private Random rand = new Random();
+        private Random _rand = new Random();
         IFishCreator _creator;
         public RandomInitializer(IFishCreator creator)
         {
@@ -23,8 +23,8 @@ namespace EcoSystem
         {
             for (int i = 0; i < number; i++)
             {
-                int x = rand.Next(0, width);
-                int y = rand.Next(0, hight);
+                int x = _rand.Next(0, width);
+                int y = _rand.Next(0, hight);
                 if (_creator.isCell(new Point { X = x, Y = y }))
                 {
                    _creator.CreateShark(new Point { X = x, Y = y });
@@ -35,8 +35,8 @@ namespace EcoSystem
         {
             for (int i = 0; i < number; i++)
             {
-                int x = rand.Next(0, width);
-                int y = rand.Next(0, hight);
+                int x = _rand.Next(0, width);
+                int y = _rand.Next(0, hight);
                 if (_creator.isCell(new Point { X = x, Y = y }))
                 {
                     _creator.CreateFish(new Point { X = x, Y = y });
@@ -47,8 +47,8 @@ namespace EcoSystem
         {
             for (int i = 0; i < number; i++)
             {
-                int x = rand.Next(0, width);
-                int y = rand.Next(0, hight);
+                int x = _rand.Next(0, width);
+                int y = _rand.Next(0, hight);
                 if (_creator.isCell(new Point { X = x, Y = y }))
                 {
                     _creator.CreateBlock(new Point { X = x, Y = y });
