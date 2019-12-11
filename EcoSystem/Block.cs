@@ -8,7 +8,7 @@ namespace EcoSystem
     {
         public Block(Point p) : base(p)
         {
-            this.Icon = '#';
+            this.Icon = FishIcon.Block;
         }
     }
 }

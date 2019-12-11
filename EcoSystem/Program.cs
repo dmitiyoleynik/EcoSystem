@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text;
 
 namespace EcoSystem
 {
@@ -8,6 +9,9 @@ namespace EcoSystem
         {
             Puppeteer puppeteer = new Puppeteer();
             puppeteer.InitOcean();
+            puppeteer.PrintOcean();
+
+
             while (true)
             {
                 puppeteer.PrintOcean();

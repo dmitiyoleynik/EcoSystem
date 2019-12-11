@@ -78,43 +78,42 @@ namespace EcoSystem
             {
                 result = false;
             }
-
-            result = _ocean[p.X, p.Y] == null;
+            else
+            {
+                result = _ocean[p.X, p.Y] == null;
+            }
 
             return result;
         }
 
         public bool isBlock(Point p)
         {
-            bool result;
+            bool result = false;
 
             if (PointOutOfRange(p))
             {
                 result = false;
             }
-
-            if (_ocean[p.X, p.Y] is Block)
+            else if (_ocean[p.X, p.Y] is Block)
             {
                 result = true;
             }
-            result = false;
 
             return result;
 
         }
         public bool isFish(Point p)
         {
-            bool result;
+            bool result = false; 
             if (PointOutOfRange(p))
             {
                 result = false;
             }
-
-            if (_ocean[p.X, p.Y] is Fish && !(_ocean[p.X, p.Y] is Shark))
+            else if(_ocean[p.X, p.Y] is Fish && !(_ocean[p.X, p.Y] is Shark))
             {
                 result = true;
             }
-            result = false;
+            
 
             return result;
 
@@ -122,19 +121,16 @@ namespace EcoSystem
 
         public bool isShark(Point p)
         {
-            bool result;
+            bool result = false;
 
             if (PointOutOfRange(p))
             {
                 result = false;
             }
-
-            if (_ocean[p.X, p.Y] is Shark)
+            else if(_ocean[p.X, p.Y] is Shark)
             {
                 result = true;
             }
-
-            result = false;
 
             return result;
 

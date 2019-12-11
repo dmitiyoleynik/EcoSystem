@@ -28,7 +28,7 @@ namespace EcoSystem
         {
             this._timeToReproduce = reproduceTime;
             this._timeToDie = dieTime;
-            this.Icon = 'F';
+            this.Icon = FishIcon.Fish;
             Swop += swop;
             NewInstance += create;
             GetDir += dir;

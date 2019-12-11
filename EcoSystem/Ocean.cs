@@ -45,26 +45,6 @@ namespace EcoSystem
             _cells = new Cell[width, hight];
         }
         
-        public bool PointOutOfRange(Point p)
-        {
-            if (p.X >= Width || p.Y >= Hight || p.X < 0 || p.Y < 0)
-            {
-                return true;
-            }
-            else return false;
-        }
-
-        public bool isCell(Point p)
-        {
-            if (PointOutOfRange(p))
-            {
-                return false;
-            }
-
-            return _cells[p.X, p.Y] == null;
-
-        }
-
         public Direction GetRandomDirection()
         {
             return (Direction)(_rand.Next(0, 1000) % 4 + 1);

@@ -17,7 +17,7 @@ namespace EcoSystem
         public Shark(Point p, SwopCell swop, CreateFish create, GetRandomDirection dir, checkCell cell, KillCell kill, checkCell fish, int reproduceTime = defaultReproduceTime, int dieTime = defaultDieTime) 
             : base(p, swop, create, dir, cell, kill, reproduceTime, dieTime)
         {
-            this.Icon = 'S';
+            this.Icon = FishIcon.Shark;
             Kill += kill;
             GetDir += dir;
             isCell += cell;

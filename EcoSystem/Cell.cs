@@ -8,20 +8,20 @@ namespace EcoSystem
     {
         #region variables 
         protected Point _position;
-        public char Icon { get; set; }
+        public FishIcon Icon { get; set; }
         public Point Position { get => _position; set => _position = value; }
         #endregion
 
         public Cell(Point p)
         {
             _position = p;
-            Icon = '-';
+            Icon = FishIcon.Cell;
         }
         public Cell(int x,int y)
         {
             _position.X = x;
             _position.Y = y;
-            Icon = '-';
+            Icon = FishIcon.Cell;
         }
     }
 }

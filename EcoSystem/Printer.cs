@@ -8,22 +8,43 @@ namespace EcoSystem
     {
         public void Print(Ocean ocean)
         {
-            char ico;
             Console.Clear();
             for (int i = 0; i < ocean.Hight; i++)
             {
                 for (int j = 0; j < ocean.Width; j++)
                 {
-                    ico = '-';
                     if (ocean[j, i] != null)
                     {
-                        ico = ocean[j, i].Icon;
+                        FishIconWrite(ocean[j, i].Icon);
                     }
-                    Console.Write(ico);
+                    else
+                    {
+                        Console.Write("-");
+                    }
                 }
                 Console.WriteLine();
             }
             //Console.WriteLine($"Blocks: {_blocksNumber}, sharks: {_sharksNumber}, fishes: {_fishesNumber}");//Убрать вложенность
+        }
+
+        public void FishIconWrite(FishIcon fi)
+        {
+            String fishImage = " ";
+            switch (fi)
+            {
+                case FishIcon.Block:
+                    fishImage = "#";
+                    break;
+                case FishIcon.Fish:
+                    fishImage = "F";
+                    break;
+                case FishIcon.Shark:
+                    fishImage = "S";
+                    break;
+                default:
+                    break;
+            }
+            Console.Write(fishImage);
         }
     }
 }
