@@ -17,12 +17,6 @@ namespace EcoSystem
         protected int _currentTime = 0;
         protected Ocean _ocean;
         #endregion
-        public event SwopCell Swop;
-        public delegate void CreateFish(Point p);
-        public event CreateFish NewInstance;
-        public event GetRandomDirection GetDir;
-        public event checkCell isCell;
-        public event KillCell Kill;
 
         public Fish(Point p,Ocean ocean, int reproduceTime = defaultReproduceTime, int dieTime = defaultDieTime)
             :base(p)
@@ -41,7 +35,7 @@ namespace EcoSystem
         {
             FishManager.KillCell(_position, _ocean);
         }
-        public void Reproduce(Direction d)
+        public virtual void Reproduce(Direction d)
         {
             FishManager.CreateFish(_position + d, _ocean);
         }

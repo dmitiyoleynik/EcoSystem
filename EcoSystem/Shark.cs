@@ -8,10 +8,6 @@ namespace EcoSystem
     {
         #region variables 
         private int _currentTimeToDie;
-        public new event GetRandomDirection GetDir;
-        public new event KillCell Kill;
-        public event checkCell isFish;
-        public event checkCell isCell;
         #endregion
 
         public Shark(Point p,Ocean ocean, int reproduceTime = defaultReproduceTime, int dieTime = defaultDieTime)
@@ -26,7 +22,10 @@ namespace EcoSystem
             _currentTimeToDie = _timeToDie;
             Move(dir);
         }
-
+        public override void Reproduce(Direction d)
+        {
+            FishManager.CreateShark(_position + d, _ocean);
+        }
         public override void LifeCicleStep()
         {
             _currentTime++;
