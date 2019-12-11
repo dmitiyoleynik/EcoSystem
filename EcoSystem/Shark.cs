@@ -14,19 +14,15 @@ namespace EcoSystem
         public event checkCell isCell;
         #endregion
 
-        public Shark(Point p, SwopCell swop, CreateFish create, GetRandomDirection dir, checkCell cell, KillCell kill, checkCell fish, int reproduceTime = defaultReproduceTime, int dieTime = defaultDieTime) 
-            : base(p, swop, create, dir, cell, kill, reproduceTime, dieTime)
+        public Shark(Point p,Ocean ocean, int reproduceTime = defaultReproduceTime, int dieTime = defaultDieTime)
+            : base(p, ocean, reproduceTime, dieTime) 
         {
             this.Icon = FishIcon.Shark;
-            Kill += kill;
-            GetDir += dir;
-            isCell += cell;
-            isFish += fish;
         }
 
         public void EatFish(Direction dir)
         {
-            Kill(_position+dir);
+            FishManager.KillCell(_position + dir, _ocean);
             _currentTimeToDie = _timeToDie;
             Move(dir);
         }
@@ -35,7 +31,7 @@ namespace EcoSystem
         {
             _currentTime++;
             _currentTimeToDie++;
-            Direction direct = GetDir();
+            Direction direct = FishManager.GetDir();
 
             if (_currentTime >= _timeToDie)
             {
@@ -43,7 +39,7 @@ namespace EcoSystem
                 return;
             }
 
-            if (isFish(_position+direct))
+            if (FishManager.isFish(_position+direct,_ocean))
             {
                 EatFish(direct);
             }

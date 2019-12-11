@@ -18,7 +18,6 @@ namespace EcoSystem
         private int _width;
         private int _hight;
         private int _timeToFishReproduce;
-        private Random _rand = new Random();
         #endregion
 
         public Cell this[int x,int y]
@@ -45,11 +44,6 @@ namespace EcoSystem
             _cells = new Cell[width, hight];
         }
         
-        public Direction GetRandomDirection()
-        {
-            return (Direction)(_rand.Next(0, 1000) % 4 + 1);
-        }
-
         public IEnumerator GetEnumerator()
         {
             return _cells.GetEnumerator();

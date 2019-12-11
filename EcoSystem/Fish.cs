@@ -15,6 +15,7 @@ namespace EcoSystem
         protected int _timeToReproduce;
         protected int _timeToDie;
         protected int _currentTime = 0;
+        protected Ocean _ocean;
         #endregion
         public event SwopCell Swop;
         public delegate void CreateFish(Point p);
@@ -23,36 +24,32 @@ namespace EcoSystem
         public event checkCell isCell;
         public event KillCell Kill;
 
-
-        public Fish(Point p, SwopCell swop, CreateFish create, GetRandomDirection dir, checkCell cell, KillCell kill, int reproduceTime = defaultReproduceTime, int dieTime = defaultDieTime) : base(p)
+        public Fish(Point p,Ocean ocean, int reproduceTime = defaultReproduceTime, int dieTime = defaultDieTime)
+            :base(p)
         {
             this._timeToReproduce = reproduceTime;
             this._timeToDie = dieTime;
             this.Icon = FishIcon.Fish;
-            Swop += swop;
-            NewInstance += create;
-            GetDir += dir;
-            isCell += cell;
-            Kill += kill;
+            _ocean = ocean;
         }
 
         public void Move(Direction d)
         {
-            Swop(_position, _position + d);
+            FishManager.SwopCell(_position, _position + d, _ocean);
         }
         public void Die()
         {
-            Kill(this._position);
+            FishManager.KillCell(_position, _ocean);
         }
         public void Reproduce(Direction d)
         {
-            NewInstance(_position + d);
+            FishManager.CreateFish(_position + d, _ocean);
         }
         public virtual void LifeCicleStep()
         {
             _currentTime++;
-            Direction direct = GetDir();
-            if (!isCell(_position + direct))
+            Direction direct = FishManager.GetDir();
+            if (!FishManager.isCell(_position + direct, _ocean)) 
             {
                 return;
             }

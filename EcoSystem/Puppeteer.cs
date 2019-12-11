@@ -8,7 +8,6 @@ namespace EcoSystem
     {
         #region variables 
         private Ocean _ocean;
-        private FishManager _fishManager;
         private IInitializer _initializer;
         private IPrinter _printer;
         #endregion
@@ -16,8 +15,7 @@ namespace EcoSystem
         public Puppeteer()
         {
             _ocean = new Ocean();
-            _fishManager = new FishManager(_ocean, _ocean.Width, _ocean.Hight,_ocean.GetRandomDirection);
-            _initializer = new RandomInitializer(_fishManager);
+            _initializer = new RandomInitializer(_ocean);
             _printer = new Printer();
         }
         public void PrintOcean()
@@ -39,12 +37,12 @@ namespace EcoSystem
                         continue;
                     }
 
-                    if (_fishManager.isFish(item.Position))
+                    if (FishManager.isFish(item.Position, _ocean))
                     {
                         (item as Fish).LifeCicleStep();
                     }
 
-                    if (_fishManager.isShark(item.Position))
+                    if (FishManager.isShark(item.Position,_ocean))
                     {
                         (item as Shark).LifeCicleStep();
                     }
@@ -53,7 +51,7 @@ namespace EcoSystem
         }
         public void Test()
         {
-            _fishManager.CreateFish(new Point { X = 5, Y = 5 });
+            FishManager.CreateFish(new Point { X = 5, Y = 5 },_ocean);
             (_ocean[5, 5] as Fish).Move(Direction.Up);
             (_ocean[5, 4] as Fish).Reproduce(Direction.Up);
         }

@@ -14,11 +14,11 @@ namespace EcoSystem
 
         #region variables 
         private Random _rand = new Random();
-        IFishManager _creator;
+        private Ocean _ocean;
         #endregion   
-        public RandomInitializer(IFishManager creator)
+        public RandomInitializer(Ocean ocean)
         {
-            _creator = creator;
+            _ocean = ocean;
         }
 
         public void Initialize(int widthRange,int higthRange)
@@ -33,9 +33,9 @@ namespace EcoSystem
             {
                 int x = _rand.Next(0, width);
                 int y = _rand.Next(0, hight);
-                if (_creator.isCell(new Point { X = x, Y = y }))
+                if (FishManager.isCell(new Point { X = x, Y = y }, _ocean))
                 {
-                   _creator.CreateShark(new Point { X = x, Y = y });
+                    FishManager.CreateShark(new Point { X = x, Y = y }, _ocean);
                 }
             }
         }
@@ -45,9 +45,9 @@ namespace EcoSystem
             {
                 int x = _rand.Next(0, width);
                 int y = _rand.Next(0, hight);
-                if (_creator.isCell(new Point { X = x, Y = y }))
+                if (FishManager.isCell(new Point { X = x, Y = y }, _ocean))
                 {
-                    _creator.CreateFish(new Point { X = x, Y = y });
+                    FishManager.CreateFish(new Point { X = x, Y = y }, _ocean);
                 }
             }
         }
@@ -57,9 +57,9 @@ namespace EcoSystem
             {
                 int x = _rand.Next(0, width);
                 int y = _rand.Next(0, hight);
-                if (_creator.isCell(new Point { X = x, Y = y }))
+                if (FishManager.isCell(new Point { X = x, Y = y }, _ocean))
                 {
-                    _creator.CreateBlock(new Point { X = x, Y = y });
+                    FishManager.CreateBlock(new Point { X = x, Y = y }, _ocean);
                 }
             }
         }

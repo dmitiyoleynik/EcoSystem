@@ -4,97 +4,79 @@ using System.Text;
 
 namespace EcoSystem
 {
-    class FishManager : IFishManager
+    static class FishManager 
     {
         #region variables 
-        Ocean _ocean;
-        private int _fishesNumber = 0;
-        private int _sharksNumber = 0;
-        private int _blocksNumber = 0;
-        int _widthRange;
-        int _higthRange;
-        GetRandomDirection randomDirection;
+        static RandomBehavior _randomBehavior = new RandomBehavior();
         #endregion
 
-        public FishManager(Ocean ocean, int widthRange, int higthRange,GetRandomDirection getRandom)
+        static public bool PointOutOfRange(Point p,Ocean ocean)
         {
-            _ocean = ocean;
-            _widthRange = widthRange;
-            _higthRange = higthRange;
-            randomDirection = getRandom;
-        }
-        public int FishNumber { get => _fishesNumber; }
-
-        public int SharkNumber { get => _sharksNumber; }
-
-        public int BlocksNumber { get => _blocksNumber; }
-
-        public bool PointOutOfRange(Point p)
-        {
-            if (p.X >= _widthRange || p.Y >= _higthRange || p.X < 0 || p.Y < 0)
+            if (p.X >= ocean.Width || p.Y >= ocean.Hight || p.X < 0 || p.Y < 0)
             {
                 return true;
             }
             else return false;
         }
-        public void CreateBlock(Point p)
+
+        static public void CreateBlock(Point p, Ocean ocean)
         {
-            if (PointOutOfRange(p))
+            if (PointOutOfRange(p, ocean))
             {
                 return;
             }
 
-            _ocean[p.X, p.Y] = new Block(p);
-            _blocksNumber++;
+            ocean[p.X, p.Y] = new Block(p);
+            //_blocksNumber++;
         }
 
-        public void CreateFish(Point p)
+        static public void CreateFish(Point p, Ocean ocean)
         {
-            if (PointOutOfRange(p))
+            if (PointOutOfRange(p,ocean))
             {
                 return;
             }
 
-            _ocean[p.X, p.Y] = new Fish(p, SwopCell, CreateFish,randomDirection,isCell, KillCell);//, SwopCell, /*CreateFish*/, GetRandomDirection, /*isCell*/, KillCell
-            _fishesNumber++;
+            ocean[p.X, p.Y] = new Fish(p, ocean);
+            //_fishesNumber++;
         }
 
-        public void CreateShark(Point p)
+        static public void CreateShark(Point p,Ocean ocean)
         {
-            if (PointOutOfRange(p))
+            if (PointOutOfRange(p, ocean))
             {
                 return;
             }
 
-            _ocean[p.X, p.Y] = new Shark(p, SwopCell, CreateShark, randomDirection,isCell, KillCell, isFish);//, SwopCell, CreateShark, GetRandomDirection, isCell, KillCell, isFish
-            _sharksNumber++;
+            ocean[p.X, p.Y] = new Shark(p, ocean);
+            //_sharksNumber++;
         }
 
-        public bool isCell(Point p)
+        static public bool isCell(Point p, Ocean ocean)
         {
             bool result;
 
-            if (PointOutOfRange(p))
+            if (PointOutOfRange(p,ocean))
             {
                 result = false;
             }
             else
             {
-                result = _ocean[p.X, p.Y] == null;
+                result = ocean[p.X, p.Y] == null;
             }
 
             return result;
         }
 
-        public bool isBlock(Point p)
+        static public bool isBlock(Point p, Ocean ocean)
         {
             bool result = false;
 
-            if (PointOutOfRange(p))
+            if (PointOutOfRange(p, ocean))
             {
                 result = false;
             }
-            else if (_ocean[p.X, p.Y] is Block)
+            else if (ocean[p.X, p.Y] is Block)
             {
                 result = true;
             }
@@ -102,14 +84,15 @@ namespace EcoSystem
             return result;
 
         }
-        public bool isFish(Point p)
+
+        static public bool isFish(Point p, Ocean ocean)
         {
             bool result = false; 
-            if (PointOutOfRange(p))
+            if (PointOutOfRange(p, ocean))
             {
                 result = false;
             }
-            else if(_ocean[p.X, p.Y] is Fish && !(_ocean[p.X, p.Y] is Shark))
+            else if(ocean[p.X, p.Y] is Fish && !(ocean[p.X, p.Y] is Shark))
             {
                 result = true;
             }
@@ -119,15 +102,15 @@ namespace EcoSystem
 
         }
 
-        public bool isShark(Point p)
+        static public bool isShark(Point p, Ocean ocean)
         {
             bool result = false;
 
-            if (PointOutOfRange(p))
+            if (PointOutOfRange(p, ocean))
             {
                 result = false;
             }
-            else if(_ocean[p.X, p.Y] is Shark)
+            else if(ocean[p.X, p.Y] is Shark)
             {
                 result = true;
             }
@@ -136,55 +119,59 @@ namespace EcoSystem
 
         }
 
-        public void ClearOcean()
+        static public void ClearOcean( Ocean ocean)
         {
-            for (int i = 0; i < _widthRange; i++)
+            for (int i = 0; i < ocean.Width; i++)
             {
-                for (int j = 0; j < _higthRange; j++)
+                for (int j = 0; j < ocean.Hight; j++)
                 {
-                    _ocean[i, j] = null;
+                    ocean[i, j] = null;
                 }
             }
         }
 
-        public void KillCell(Point p)
+        static public void KillCell(Point p, Ocean ocean)
         {
-            if (PointOutOfRange(p))
+            if (PointOutOfRange(p, ocean))
             {
                 return;
             }
 
-            if (isFish(p))
+            if (isFish(p, ocean))
             {
-                _fishesNumber--;
+                //_fishesNumber--;
             }
-            if (isShark(p))
+            if (isShark(p, ocean))
             {
-                _sharksNumber--;
+                //_sharksNumber--;
             }
-            _ocean[p.X, p.Y] = null;
+            ocean[p.X, p.Y] = null;
         }
 
-        public void SwopCell(Point p1, Point p2)
+        static public void SwopCell(Point p1, Point p2, Ocean ocean)
         {
-            if (PointOutOfRange(p1) || PointOutOfRange(p2))
+            if (PointOutOfRange(p1, ocean) || PointOutOfRange(p2, ocean))
             {
                 return;
             }
 
-            Cell tmp = _ocean[p1.X, p1.Y];
-            _ocean[p1.X, p1.Y] = _ocean[p2.X, p2.Y];
-            _ocean[p2.X, p2.Y] = tmp;
-            if (!isCell(p1))
+            Cell tmp = ocean[p1.X, p1.Y];
+            ocean[p1.X, p1.Y] = ocean[p2.X, p2.Y];
+            ocean[p2.X, p2.Y] = tmp;
+            if (!isCell(p1, ocean))
             {
-                _ocean[p1.X, p1.Y].Position = p1;
+                ocean[p1.X, p1.Y].Position = p1;
             }
-            if (!isCell(p2))
+            if (!isCell(p2, ocean))
             {
-                _ocean[p2.X, p2.Y].Position = p2;
+                ocean[p2.X, p2.Y].Position = p2;
             }
 
         }
 
+        static public Direction GetDir()
+        {
+            return _randomBehavior.GetRandomDirection();
+        }
     }
 }

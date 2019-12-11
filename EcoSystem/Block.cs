@@ -6,7 +6,8 @@ namespace EcoSystem
 {
     public class Block : Cell
     {
-        public Block(Point p) : base(p)
+        public Block(Point p) 
+            : base(p)
         {
             this.Icon = FishIcon.Block;
         }
