@@ -7,6 +7,12 @@ namespace EcoSystem
 {
     public class Ocean:IEnumerable
     {
+        #region
+        const int defaultWidth = 120;
+        const int defaultHigth = 25;
+        const int defaultTimeToReproduce = 30;
+        #endregion
+
         #region variables 
         private Cell[,] _cells;
         private int _width;
@@ -17,9 +23,6 @@ namespace EcoSystem
         private int _timeToFishReproduce;
         private Random _rand = new Random();
         #endregion
-        
-
-        //public Cell[,] Cells { get => _cells; }
 
         public Cell this[int x,int y]
         {
@@ -34,12 +37,16 @@ namespace EcoSystem
         }
 
         public int FishNumber { get => _fishesNumber; }
+
         public int SharkNumber { get => _sharksNumber; }
+
         public int BlocksNumber { get => _blocksNumber; }
+
         public int Hight { get => _hight;  }
+
         public int Width { get => _width; }
 
-        public Ocean(int width = 120, int hight = 25, int timeToReproduce = 30)
+        public Ocean(int width = defaultWidth, int hight = defaultHigth, int timeToReproduce = defaultTimeToReproduce)
         {
             _width = width;
             _hight = hight;
@@ -58,29 +65,6 @@ namespace EcoSystem
                 }
             }
         }
-        //public void Run(int iter = 1)
-        //{
-        //    for (int i = 0; i < iter; i++)
-        //    {
-        //        foreach (Cell item in cells)
-        //        {
-        //            if (item==null)
-        //            {
-        //                continue;
-        //            }
-
-        //            if (isFish(item.Position))
-        //            {
-        //                (item as Fish).LifeCicleStep();
-        //            }
-
-        //            if (isShark(item.Position))
-        //            {
-        //                (item as Shark).LifeCicleStep();
-        //            }
-        //        }
-        //    }
-        //}
 
         public void PopulateOcean(IInitializer initializer)
         {
@@ -95,6 +79,7 @@ namespace EcoSystem
             }
             else return false;
         }
+
         public void CreateBlock(Point p)
         {
             if (PointOutOfRange(p))
@@ -105,6 +90,7 @@ namespace EcoSystem
             _cells[p.X, p.Y] = new Block(p);
             _blocksNumber++;
         }
+
         public void CreateFish(Point p)
         {
             if (PointOutOfRange(p))
@@ -115,6 +101,7 @@ namespace EcoSystem
             _cells[p.X, p.Y] = new Fish(p, SwopCell, CreateFish, GetRandomDirection, isCell, KillCell);
             _fishesNumber++;
         }
+
         public void CreateShark(Point p)
         {
             if (PointOutOfRange(p))
@@ -125,6 +112,7 @@ namespace EcoSystem
             _cells[p.X, p.Y] = new Shark(p, SwopCell, CreateShark, GetRandomDirection, isCell, KillCell, isFish);
             _sharksNumber++;
         }
+
         public void Print()
         {
             char ico;
@@ -154,6 +142,7 @@ namespace EcoSystem
             return _cells[p.X, p.Y] == null;
 
         }
+
         public bool isFish(Point p)
         {
             if (PointOutOfRange(p))
@@ -167,6 +156,7 @@ namespace EcoSystem
             }
             return false;
         }
+
         public bool isShark(Point p)
         {
             if (PointOutOfRange(p))
@@ -180,6 +170,7 @@ namespace EcoSystem
             }
             return false;
         }
+
         public bool isBlock(Point p)
         {
             if (PointOutOfRange(p))
@@ -193,6 +184,7 @@ namespace EcoSystem
             }
             return false;
         }
+
         public void SwopCell(Point p1, Point p2)
         {
             if (PointOutOfRange(p1) || PointOutOfRange(p2))
@@ -231,6 +223,7 @@ namespace EcoSystem
             _cells[p.X, p.Y] = null;
 
         }
+
         public Direction GetRandomDirection()
         {
             return (Direction)(_rand.Next(0, 1000) % 4 + 1);

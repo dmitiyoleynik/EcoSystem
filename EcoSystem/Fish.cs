@@ -6,6 +6,11 @@ namespace EcoSystem
 {
     public class Fish : Cell
     {
+        #region consts
+        protected const int defaultReproduceTime = 30;
+        protected const int defaultDieTime = 45;
+        #endregion
+
         #region variables 
         protected int _timeToReproduce;
         protected int _timeToDie;
@@ -23,7 +28,7 @@ namespace EcoSystem
         public event KillCell Kill;
 
 
-        public Fish(Point p, SwopCell swop, CreateFish create, GetRandomDirection dir, checkCell cell, KillCell kill, int reproduceTime = 30, int dieTime = 45) : base(p)
+        public Fish(Point p, SwopCell swop, CreateFish create, GetRandomDirection dir, checkCell cell, KillCell kill, int reproduceTime = defaultReproduceTime, int dieTime = defaultDieTime) : base(p)
         {
             this._timeToReproduce = reproduceTime;
             this._timeToDie = dieTime;
@@ -34,13 +39,7 @@ namespace EcoSystem
             isCell += cell;
             Kill += kill;
         }
-        //public Fish(Point p, int reproduceTime = 30, int dieTime = 45) : base(p)
-        //{
-        //    this.Icon = 'F';
-        //    this.timeToReproduce = reproduceTime;
-        //    this.timeToDie = dieTime;
 
-        //}
         public void Move(Direction d)
         {
             Swop(_position, _position + d);
@@ -53,7 +52,7 @@ namespace EcoSystem
         {
             NewInstance(_position + d);
         }
-        public void LifeCicleStep()
+        public virtual void LifeCicleStep()
         {
             _currentTime++;
             Direction direct = GetDir();

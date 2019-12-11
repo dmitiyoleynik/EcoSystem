@@ -14,7 +14,8 @@ namespace EcoSystem
         public event checkCell isCell;
         #endregion
 
-        public Shark(Point p, SwopCell swop, CreateFish create, GetRandomDirection dir, checkCell cell, KillCell kill, checkCell fish, int reproduceTime = 45, int dieTime = 30) : base(p, swop, create, dir, cell, kill, reproduceTime, dieTime)
+        public Shark(Point p, SwopCell swop, CreateFish create, GetRandomDirection dir, checkCell cell, KillCell kill, checkCell fish, int reproduceTime = defaultReproduceTime, int dieTime = defaultDieTime) 
+            : base(p, swop, create, dir, cell, kill, reproduceTime, dieTime)
         {
             this.Icon = 'S';
             Kill += kill;
@@ -22,11 +23,6 @@ namespace EcoSystem
             isCell += cell;
             isFish += fish;
         }
-        //public Shark(Point p, int reproduceTime = 45, int dieTime = 30) : base(p)
-        //{
-        //    this.Icon = 'S';
-
-        //}
 
         public void EatFish(Direction dir)
         {
@@ -34,7 +30,8 @@ namespace EcoSystem
             _currentTimeToDie = _timeToDie;
             Move(dir);
         }
-        public new void LifeCicleStep()
+
+        public override void LifeCicleStep()
         {
             _currentTime++;
             _currentTimeToDie++;
