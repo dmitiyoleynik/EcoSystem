@@ -14,9 +14,6 @@ namespace EcoSystem
                 Console.ReadKey();
                 puppeteer.Play();
             }
-            puppeteer.PrintOcean();
-            puppeteer.Play();
-            puppeteer.PrintOcean();
 
         }
     }

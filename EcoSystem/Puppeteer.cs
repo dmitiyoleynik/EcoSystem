@@ -8,19 +8,21 @@ namespace EcoSystem
     {
         #region variables 
         private Ocean _ocean;
-        private FishManager _fishCreator;
+        private FishManager _fishManager;
         private IInitializer _initializer;
+        private IPrinter _printer;
         #endregion
 
         public Puppeteer()
         {
             _ocean = new Ocean();
-            _fishCreator = new FishManager(_ocean, _ocean.Width, _ocean.Hight,/*_ocean.SwopCell*/_ocean.GetRandomDirection/*,_ocean.KillCell*/,_ocean.isFish,_ocean.isShark);
-            _initializer = new RandomInitializer(_fishCreator);
+            _fishManager = new FishManager(_ocean, _ocean.Width, _ocean.Hight,_ocean.GetRandomDirection);
+            _initializer = new RandomInitializer(_fishManager);
+            _printer = new Printer();
         }
         public void PrintOcean()
         {
-            _ocean.Print();
+            _printer.Print(_ocean);
         }
         public void InitOcean()
         {
@@ -37,12 +39,12 @@ namespace EcoSystem
                         continue;
                     }
 
-                    if (_ocean.isFish(item.Position))
+                    if (_fishManager.isFish(item.Position))
                     {
                         (item as Fish).LifeCicleStep();
                     }
 
-                    if (_ocean.isShark(item.Position))
+                    if (_fishManager.isShark(item.Position))
                     {
                         (item as Shark).LifeCicleStep();
                     }
@@ -51,7 +53,7 @@ namespace EcoSystem
         }
         public void Test()
         {
-            _fishCreator.CreateFish(new Point { X = 5, Y = 5 });
+            _fishManager.CreateFish(new Point { X = 5, Y = 5 });
             (_ocean[5, 5] as Fish).Move(Direction.Up);
             (_ocean[5, 4] as Fish).Reproduce(Direction.Up);
         }

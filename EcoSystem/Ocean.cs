@@ -54,25 +54,6 @@ namespace EcoSystem
             else return false;
         }
 
-        public void Print()
-        {
-            char ico;
-            Console.Clear();
-            for (int i = 0; i < Hight; i++)
-            {
-                for (int j = 0; j < Width; j++)
-                {
-                    ico = '-';
-                    if (_cells[j, i] != null)
-                    {
-                        ico = _cells[j, i].Icon;
-                    }
-                        Console.Write(ico);
-                }
-                Console.WriteLine();
-            }
-            //Console.WriteLine($"Blocks: {_blocksNumber}, sharks: {_sharksNumber}, fishes: {_fishesNumber}");
-        }
         public bool isCell(Point p)
         {
             if (PointOutOfRange(p))
@@ -83,69 +64,6 @@ namespace EcoSystem
             return _cells[p.X, p.Y] == null;
 
         }
-
-        public bool isFish(Point p)
-        {
-            if (PointOutOfRange(p))
-            {
-                return false;
-            }
-
-            if (_cells[p.X, p.Y] is Fish && !(_cells[p.X, p.Y] is Shark))
-            {
-                return true;
-            }
-            return false;
-        }
-
-        public bool isShark(Point p)
-        {
-            if (PointOutOfRange(p))
-            {
-                return false;
-            }
-
-            if (_cells[p.X, p.Y] is Shark)
-            {
-                return true;
-            }
-            return false;
-        }
-
-        public bool isBlock(Point p)
-        {
-            if (PointOutOfRange(p))
-            {
-                return false;
-            }
-
-            if (_cells[p.X, p.Y] is Block)
-            {
-                return true;
-            }
-            return false;
-        }
-
-        //public void SwopCell(Point p1, Point p2)
-        //{
-        //    if (PointOutOfRange(p1) || PointOutOfRange(p2))
-        //    {
-        //        return;
-        //    }
-
-        //    Cell tmp = _cells[p1.X, p1.Y];
-        //    _cells[p1.X, p1.Y] = _cells[p2.X, p2.Y];
-        //    _cells[p2.X, p2.Y] = tmp;
-        //    if (!isCell(p1))
-        //    {
-        //        _cells[p1.X, p1.Y].Position = p1;
-        //    }
-        //    if (!isCell(p2))
-        //    {
-        //        _cells[p2.X, p2.Y].Position = p2;
-        //    }
-
-        //}
 
         public Direction GetRandomDirection()
         {

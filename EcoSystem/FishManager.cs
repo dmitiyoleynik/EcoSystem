@@ -13,22 +13,15 @@ namespace EcoSystem
         private int _blocksNumber = 0;
         int _widthRange;
         int _higthRange;
-        //SwopCell swopCell;
         GetRandomDirection randomDirection;
-        checkCell isFish;
-        checkCell isShark;
         #endregion
 
-        public FishManager(Ocean ocean, int widthRange, int higthRange,/*SwopCell swop*/GetRandomDirection getRandom, checkCell fish,checkCell shark)
+        public FishManager(Ocean ocean, int widthRange, int higthRange,GetRandomDirection getRandom)
         {
             _ocean = ocean;
             _widthRange = widthRange;
             _higthRange = higthRange;
-            //swopCell = swop;
             randomDirection = getRandom;
-            //killCell = kill;
-            isFish = fish;
-            isShark = shark;
         }
         public int FishNumber { get => _fishesNumber; }
 
@@ -79,12 +72,72 @@ namespace EcoSystem
 
         public bool isCell(Point p)
         {
+            bool result;
+
             if (PointOutOfRange(p))
             {
-                return false;
+                result = false;
             }
 
-            return _ocean[p.X, p.Y] == null;
+            result = _ocean[p.X, p.Y] == null;
+
+            return result;
+        }
+
+        public bool isBlock(Point p)
+        {
+            bool result;
+
+            if (PointOutOfRange(p))
+            {
+                result = false;
+            }
+
+            if (_ocean[p.X, p.Y] is Block)
+            {
+                result = true;
+            }
+            result = false;
+
+            return result;
+
+        }
+        public bool isFish(Point p)
+        {
+            bool result;
+            if (PointOutOfRange(p))
+            {
+                result = false;
+            }
+
+            if (_ocean[p.X, p.Y] is Fish && !(_ocean[p.X, p.Y] is Shark))
+            {
+                result = true;
+            }
+            result = false;
+
+            return result;
+
+        }
+
+        public bool isShark(Point p)
+        {
+            bool result;
+
+            if (PointOutOfRange(p))
+            {
+                result = false;
+            }
+
+            if (_ocean[p.X, p.Y] is Shark)
+            {
+                result = true;
+            }
+
+            result = false;
+
+            return result;
+
         }
 
         public void ClearOcean()

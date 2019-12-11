@@ -16,15 +16,11 @@ namespace EcoSystem
         protected int _timeToDie;
         protected int _currentTime = 0;
         #endregion
-        //public delegate void SwopCell(Point p1, Point p2);
         public event SwopCell Swop;
         public delegate void CreateFish(Point p);
         public event CreateFish NewInstance;
-        //public delegate Direction GetRandomDirection();
         public event GetRandomDirection GetDir;
-        //public delegate bool checkCell(Point p);
         public event checkCell isCell;
-        //public delegate void KillCell(Point p);
         public event KillCell Kill;
 
 
