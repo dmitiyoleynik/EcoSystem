@@ -10,6 +10,6 @@ namespace EcoSystem
         void CreateShark(Point p);
         void CreateBlock(Point p);
         bool isCell(Point p);
-
+        void ClearOcean();
     }
 }

@@ -52,25 +52,9 @@ namespace EcoSystem
             _hight = hight;
             this._timeToFishReproduce = timeToReproduce;
             _cells = new Cell[width, hight];
-            Clear();
         }
         
-        private void Clear()
-        {
-            for (int i = 0; i < Width; i++)
-            {
-                for (int j = 0; j < Hight; j++)
-                {
-                    _cells[i, j] = null;
-                }
-            }
-        }
 
-        public void PopulateOcean(IInitializer initializer)
-        {
-            initializer.Initialize(_cells, Width, Hight);
-        }
-        
         public bool PointOutOfRange(Point p)
         {
             if (p.X >= Width || p.Y >= Hight || p.X < 0 || p.Y < 0)
@@ -78,39 +62,6 @@ namespace EcoSystem
                 return true;
             }
             else return false;
-        }
-
-        public void CreateBlock(Point p)
-        {
-            if (PointOutOfRange(p))
-            {
-                return;
-            }
-
-            _cells[p.X, p.Y] = new Block(p);
-            _blocksNumber++;
-        }
-
-        public void CreateFish(Point p)
-        {
-            if (PointOutOfRange(p))
-            {
-                return;
-            }
-
-            _cells[p.X, p.Y] = new Fish(p, SwopCell, CreateFish, GetRandomDirection, isCell, KillCell);
-            _fishesNumber++;
-        }
-
-        public void CreateShark(Point p)
-        {
-            if (PointOutOfRange(p))
-            {
-                return;
-            }
-
-            _cells[p.X, p.Y] = new Shark(p, SwopCell, CreateShark, GetRandomDirection, isCell, KillCell, isFish);
-            _sharksNumber++;
         }
 
         public void Print()

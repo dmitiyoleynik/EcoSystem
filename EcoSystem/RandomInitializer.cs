@@ -21,7 +21,7 @@ namespace EcoSystem
             _creator = creator;
         }
 
-        public void Initialize(Cell[,] cells,int widthRange,int higthRange)
+        public void Initialize(int widthRange,int higthRange)
         {
             SetBlocksRandom(widthRange, higthRange);
             SetFishesRandom(widthRange, higthRange);

@@ -6,6 +6,6 @@ namespace EcoSystem
 {
     public interface IInitializer
     {
-        void Initialize(Cell[,] cells,int widthRange,int higthRange);
+        void Initialize(int widthRange,int higthRange);
     }
 }
