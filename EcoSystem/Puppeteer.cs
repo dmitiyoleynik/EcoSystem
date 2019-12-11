@@ -8,14 +8,14 @@ namespace EcoSystem
     {
         #region variables 
         private Ocean _ocean;
-        private FishCreator _fishCreator;
+        private FishManager _fishCreator;
         private IInitializer _initializer;
         #endregion
 
         public Puppeteer()
         {
             _ocean = new Ocean();
-            _fishCreator = new FishCreator(_ocean, _ocean.Width, _ocean.Hight,_ocean.SwopCell,_ocean.GetRandomDirection,_ocean.KillCell,_ocean.isFish);
+            _fishCreator = new FishManager(_ocean, _ocean.Width, _ocean.Hight,/*_ocean.SwopCell*/_ocean.GetRandomDirection/*,_ocean.KillCell*/,_ocean.isFish,_ocean.isShark);
             _initializer = new RandomInitializer(_fishCreator);
         }
         public void PrintOcean()

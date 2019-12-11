@@ -14,9 +14,9 @@ namespace EcoSystem
 
         #region variables 
         private Random _rand = new Random();
-        IFishCreator _creator;
+        IFishManager _creator;
         #endregion   
-        public RandomInitializer(IFishCreator creator)
+        public RandomInitializer(IFishManager creator)
         {
             _creator = creator;
         }

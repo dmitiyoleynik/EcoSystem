@@ -17,9 +17,6 @@ namespace EcoSystem
         private Cell[,] _cells;
         private int _width;
         private int _hight;
-        private int _fishesNumber = 0;
-        private int _sharksNumber = 0;
-        private int _blocksNumber = 0;
         private int _timeToFishReproduce;
         private Random _rand = new Random();
         #endregion
@@ -36,12 +33,6 @@ namespace EcoSystem
             }
         }
 
-        public int FishNumber { get => _fishesNumber; }
-
-        public int SharkNumber { get => _sharksNumber; }
-
-        public int BlocksNumber { get => _blocksNumber; }
-
         public int Hight { get => _hight;  }
 
         public int Width { get => _width; }
@@ -54,7 +45,6 @@ namespace EcoSystem
             _cells = new Cell[width, hight];
         }
         
-
         public bool PointOutOfRange(Point p)
         {
             if (p.X >= Width || p.Y >= Hight || p.X < 0 || p.Y < 0)
@@ -81,7 +71,7 @@ namespace EcoSystem
                 }
                 Console.WriteLine();
             }
-            Console.WriteLine($"Blocks: {_blocksNumber}, sharks: {_sharksNumber}, fishes: {_fishesNumber}");
+            //Console.WriteLine($"Blocks: {_blocksNumber}, sharks: {_sharksNumber}, fishes: {_fishesNumber}");
         }
         public bool isCell(Point p)
         {
@@ -136,44 +126,26 @@ namespace EcoSystem
             return false;
         }
 
-        public void SwopCell(Point p1, Point p2)
-        {
-            if (PointOutOfRange(p1) || PointOutOfRange(p2))
-            {
-                return;
-            }
+        //public void SwopCell(Point p1, Point p2)
+        //{
+        //    if (PointOutOfRange(p1) || PointOutOfRange(p2))
+        //    {
+        //        return;
+        //    }
 
-            Cell tmp = _cells[p1.X, p1.Y];
-            _cells[p1.X, p1.Y] = _cells[p2.X, p2.Y];
-            _cells[p2.X, p2.Y] = tmp;
-            if (!isCell(p1))
-            {
-                _cells[p1.X, p1.Y].Position = p1;
-            }
-            if (!isCell(p2))
-            {
-                _cells[p2.X, p2.Y].Position = p2;
-            }
+        //    Cell tmp = _cells[p1.X, p1.Y];
+        //    _cells[p1.X, p1.Y] = _cells[p2.X, p2.Y];
+        //    _cells[p2.X, p2.Y] = tmp;
+        //    if (!isCell(p1))
+        //    {
+        //        _cells[p1.X, p1.Y].Position = p1;
+        //    }
+        //    if (!isCell(p2))
+        //    {
+        //        _cells[p2.X, p2.Y].Position = p2;
+        //    }
 
-        }
-        public void KillCell(Point p)
-        {
-            if (PointOutOfRange(p))
-            {
-                return;
-            }
-
-            if (isFish(p))
-            {
-                _fishesNumber--;
-            }
-            if (isShark(p))
-            {
-                _sharksNumber--;
-            }
-            _cells[p.X, p.Y] = null;
-
-        }
+        //}
 
         public Direction GetRandomDirection()
         {
