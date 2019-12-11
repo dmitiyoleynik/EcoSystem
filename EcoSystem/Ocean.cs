@@ -6,6 +6,7 @@ namespace EcoSystem
 {
     public class Ocean
     {
+        #region variables 
         private Cell[,] cells;
         private int _width;
         private int _hight;
@@ -14,6 +15,7 @@ namespace EcoSystem
         private int _blocksNumber = 0;
         private int _timeToFishReproduce;
         private Random _rand = new Random();
+        #endregion
         
 
         public Cell[,] Cells { get => cells; }

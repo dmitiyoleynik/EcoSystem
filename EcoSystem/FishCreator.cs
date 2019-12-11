@@ -6,7 +6,7 @@ namespace EcoSystem
 {
     class FishCreator : IFishCreator
     {
-
+        #region variables 
         Cell[,] _cells;
         int _widthRange;
         int _higthRange;
@@ -14,6 +14,7 @@ namespace EcoSystem
         GetRandomDirection randomDirection;
         KillCell killCell;
         checkCell isFish;
+        #endregion
 
         public FishCreator(Cell[,] cells, int widthRange, int higthRange,/* */SwopCell swop,GetRandomDirection getRandom,KillCell kill, checkCell fish)
         {

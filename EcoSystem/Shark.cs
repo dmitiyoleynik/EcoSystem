@@ -6,11 +6,13 @@ namespace EcoSystem
 {
     public class Shark : Fish
     {
+        #region variables 
         private int _currentTimeToDie;
         public new event GetRandomDirection GetDir;
         public new event KillCell Kill;
         public event checkCell isFish;
         public event checkCell isCell;
+        #endregion
 
         public Shark(Point p, SwopCell swop, CreateFish create, GetRandomDirection dir, checkCell cell, KillCell kill, checkCell fish, int reproduceTime = 45, int dieTime = 30) : base(p, swop, create, dir, cell, kill, reproduceTime, dieTime)
         {

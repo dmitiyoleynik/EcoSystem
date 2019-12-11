@@ -6,9 +6,11 @@ namespace EcoSystem
 {
     public class Fish : Cell
     {
+        #region variables 
         protected int _timeToReproduce;
         protected int _timeToDie;
         protected int _currentTime = 0;
+        #endregion
         //public delegate void SwopCell(Point p1, Point p2);
         public event SwopCell Swop;
         public delegate void CreateFish(Point p);

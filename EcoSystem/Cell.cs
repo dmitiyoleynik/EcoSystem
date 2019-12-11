@@ -6,9 +6,11 @@ namespace EcoSystem
 {
     abstract public class Cell
     {
+        #region variables 
         protected Point _position;
         public char Icon { get; set; }
         public Point Position { get => _position; set => _position = value; }
+        #endregion
 
         public Cell(Point p)
         {

@@ -6,9 +6,11 @@ namespace EcoSystem
 {
     class Puppeteer
     {
+        #region variables 
         private Ocean _ocean;
         private FishCreator _fishCreator;
         private IInitializer _initializer;
+        #endregion
 
         public Puppeteer()
         {

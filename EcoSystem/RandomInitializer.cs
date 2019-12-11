@@ -6,8 +6,10 @@ namespace EcoSystem
 {
     class RandomInitializer: IInitializer
     {
+        #region variables 
         private Random _rand = new Random();
         IFishCreator _creator;
+        #endregion   
         public RandomInitializer(IFishCreator creator)
         {
             _creator = creator;
