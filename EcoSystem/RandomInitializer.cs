@@ -27,6 +27,7 @@ namespace EcoSystem
             SetFishesRandom(widthRange, higthRange);
             SetSharksRandom(widthRange, higthRange);
         }
+        
         public void SetSharksRandom(int width, int hight, int number = defaultSharksNumber)
         {
             for (int i = 0; i < number; i++)
@@ -39,6 +40,7 @@ namespace EcoSystem
                 }
             }
         }
+       
         public void SetFishesRandom(int width, int hight, int number = defaultFishesNumber)
         {
             for (int i = 0; i < number; i++)
@@ -51,6 +53,7 @@ namespace EcoSystem
                 }
             }
         }
+       
         public void SetBlocksRandom(int width, int hight, int number = defaultBlocksNumber)
         {
             for (int i = 0; i < number; i++)

@@ -9,10 +9,10 @@ namespace EcoSystem
         void CreateFish(Point p);
         void CreateShark(Point p);
         void CreateBlock(Point p);
-        bool isCell(Point p);
-        bool isFish(Point p);
-        bool isShark(Point p);
-        bool isBlock(Point p);
+        bool IsCell(Point p);
+        bool IsFish(Point p);
+        bool IsShark(Point p);
+        bool IsBlock(Point p);
         void ClearOcean();
         void KillCell(Point p);
         void SwopCell(Point p1, Point p2);

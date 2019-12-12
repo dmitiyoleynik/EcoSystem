@@ -8,9 +8,9 @@ namespace EcoSystem
     {
         #region variables 
         protected Point _position;
+        #endregion
         public FishIcon Icon { get; set; }
         public Point Position { get => _position; set => _position = value; }
-        #endregion
 
         public Cell(Point p)
         {

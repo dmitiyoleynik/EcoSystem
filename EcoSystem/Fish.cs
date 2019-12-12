@@ -7,8 +7,8 @@ namespace EcoSystem
     public class Fish : Cell
     {
         #region consts
-        protected const int defaultReproduceTime = 30;
-        protected const int defaultDieTime = 45;
+        protected const int DefaultReproduceTime = 30;
+        protected const int DefaultDieTime = 45;
         #endregion
 
         #region variables 
@@ -18,7 +18,7 @@ namespace EcoSystem
         protected Ocean _ocean;
         #endregion
 
-        public Fish(Point p,Ocean ocean, int reproduceTime = defaultReproduceTime, int dieTime = defaultDieTime)
+        public Fish(Point p,Ocean ocean, int reproduceTime = DefaultReproduceTime, int dieTime = DefaultDieTime)
             :base(p)
         {
             this._timeToReproduce = reproduceTime;
@@ -31,14 +31,17 @@ namespace EcoSystem
         {
             FishManager.SwopCell(_position, _position + d, _ocean);
         }
+
         public void Die()
         {
             FishManager.KillCell(_position, _ocean);
         }
+
         public virtual void Reproduce(Direction d)
         {
             FishManager.CreateFish(_position + d, _ocean);
         }
+
         public virtual void LifeCicleStep()
         {
             _currentTime++;

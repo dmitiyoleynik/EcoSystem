@@ -7,10 +7,10 @@ namespace EcoSystem
 {
     public class Ocean:IEnumerable
     {
-        #region
-        const int defaultWidth = 120;
-        const int defaultHigth = 25;
-        const int defaultTimeToReproduce = 30;
+        #region const
+        const int DefaultWidth = 120;
+        const int DefaultHigth = 25;
+        const int DefaultTimeToReproduce = 30;
         #endregion
 
         #region variables 
@@ -36,7 +36,7 @@ namespace EcoSystem
 
         public int Width { get => _width; }
 
-        public Ocean(int width = defaultWidth, int hight = defaultHigth, int timeToReproduce = defaultTimeToReproduce)
+        public Ocean(int width = DefaultWidth, int hight = DefaultHigth, int timeToReproduce = DefaultTimeToReproduce)
         {
             _width = width;
             _hight = hight;

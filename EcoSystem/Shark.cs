@@ -7,10 +7,10 @@ namespace EcoSystem
     public class Shark : Fish
     {
         #region variables 
-        private int _currentTimeToDie;
+        protected int _currentTimeToDie;
         #endregion
 
-        public Shark(Point p,Ocean ocean, int reproduceTime = defaultReproduceTime, int dieTime = defaultDieTime)
+        public Shark(Point p,Ocean ocean, int reproduceTime = DefaultReproduceTime, int dieTime = DefaultDieTime)
             : base(p, ocean, reproduceTime, dieTime) 
         {
             this.Icon = FishIcon.Shark;
@@ -22,10 +22,12 @@ namespace EcoSystem
             _currentTimeToDie = _timeToDie;
             Move(dir);
         }
+
         public override void Reproduce(Direction d)
         {
             FishManager.CreateShark(_position + d, _ocean);
         }
+      
         public override void LifeCicleStep()
         {
             _currentTime++;
