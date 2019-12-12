@@ -27,7 +27,7 @@ namespace EcoSystem
             }
 
             ocean[p.X, p.Y] = new Block(p);
-            //_blocksNumber++;
+            ocean.BlocksNumber++;
         }
 
         static public void CreateFish(Point p, Ocean ocean)
@@ -38,7 +38,7 @@ namespace EcoSystem
             }
 
             ocean[p.X, p.Y] = new Fish(p, ocean);
-            //_fishesNumber++;
+            ocean.FishesNumber++;
         }
 
         static public void CreateShark(Point p,Ocean ocean)
@@ -49,10 +49,10 @@ namespace EcoSystem
             }
 
             ocean[p.X, p.Y] = new Shark(p, ocean);
-            //_sharksNumber++;
+           ocean.SharksNumber++;
         }
 
-        static public bool isCell(Point p, Ocean ocean)
+        static public bool IsCell(Point p, Ocean ocean)
         {
             bool result;
 
@@ -68,7 +68,7 @@ namespace EcoSystem
             return result;
         }
 
-        static public bool isBlock(Point p, Ocean ocean)
+        static public bool IsBlock(Point p, Ocean ocean)
         {
             bool result = false;
 
@@ -85,7 +85,7 @@ namespace EcoSystem
 
         }
 
-        static public bool isFish(Point p, Ocean ocean)
+        static public bool IsFish(Point p, Ocean ocean)
         {
             bool result = false; 
             if (PointOutOfRange(p, ocean))
@@ -97,12 +97,11 @@ namespace EcoSystem
                 result = true;
             }
             
-
             return result;
 
         }
 
-        static public bool isShark(Point p, Ocean ocean)
+        static public bool IsShark(Point p, Ocean ocean)
         {
             bool result = false;
 
@@ -137,13 +136,13 @@ namespace EcoSystem
                 return;
             }
 
-            if (isFish(p, ocean))
+            if (IsFish(p, ocean))
             {
-                //_fishesNumber--;
+               ocean.FishesNumber--;
             }
-            if (isShark(p, ocean))
+            if (IsShark(p, ocean))
             {
-                //_sharksNumber--;
+                ocean.SharksNumber--;
             }
             ocean[p.X, p.Y] = null;
         }
@@ -158,11 +157,11 @@ namespace EcoSystem
             Cell tmp = ocean[p1.X, p1.Y];
             ocean[p1.X, p1.Y] = ocean[p2.X, p2.Y];
             ocean[p2.X, p2.Y] = tmp;
-            if (!isCell(p1, ocean))
+            if (!IsCell(p1, ocean))
             {
                 ocean[p1.X, p1.Y].Position = p1;
             }
-            if (!isCell(p2, ocean))
+            if (!IsCell(p2, ocean))
             {
                 ocean[p2.X, p2.Y].Position = p2;
             }

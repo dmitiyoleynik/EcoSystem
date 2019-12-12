@@ -37,12 +37,12 @@ namespace EcoSystem
                         continue;
                     }
 
-                    if (FishManager.isFish(item.Position, _ocean))
+                    if (FishManager.IsFish(item.Position, _ocean))
                     {
                         (item as Fish).LifeCicleStep();
                     }
 
-                    if (FishManager.isShark(item.Position,_ocean))
+                    if (FishManager.IsShark(item.Position,_ocean))
                     {
                         (item as Shark).LifeCicleStep();
                     }

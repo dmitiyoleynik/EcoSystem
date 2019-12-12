@@ -24,7 +24,7 @@ namespace EcoSystem
                 }
                 Console.WriteLine();
             }
-            //Console.WriteLine($"Blocks: {_blocksNumber}, sharks: {_sharksNumber}, fishes: {_fishesNumber}");//Убрать вложенность
+            Console.WriteLine($"Blocks: {ocean.BlocksNumber}, sharks: {ocean.SharksNumber}, fishes: {ocean.FishesNumber}");
         }
 
         public void FishIconWrite(FishIcon fi)

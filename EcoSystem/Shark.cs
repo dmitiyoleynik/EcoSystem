@@ -25,7 +25,10 @@ namespace EcoSystem
 
         public override void Reproduce(Direction d)
         {
-            FishManager.CreateShark(_position + d, _ocean);
+            if (FishManager.IsCell(_position + d, _ocean))
+            {
+                FishManager.CreateShark(_position + d, _ocean);
+            }
         }
       
         public override void LifeCicleStep()
@@ -40,9 +43,14 @@ namespace EcoSystem
                 return;
             }
 
-            if (FishManager.isFish(_position+direct,_ocean))
+            if (FishManager.IsFish(_position+direct,_ocean))
             {
                 EatFish(direct);
+            }
+
+            if (!FishManager.IsCell(_position + direct, _ocean))
+            {
+                return;
             }
 
             if (_currentTime >= _timeToReproduce)

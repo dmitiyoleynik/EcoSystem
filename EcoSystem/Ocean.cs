@@ -18,6 +18,9 @@ namespace EcoSystem
         private int _width;
         private int _hight;
         private int _timeToFishReproduce;
+        private int _sharksNumber = 0;
+        private int _fishesNumber = 0;
+        private int _BlocksNumber = 0;
         #endregion
 
         public Cell this[int x,int y]
@@ -35,6 +38,9 @@ namespace EcoSystem
         public int Hight { get => _hight;  }
 
         public int Width { get => _width; }
+        public int SharksNumber { get => _sharksNumber; set => _sharksNumber = value; }
+        public int FishesNumber { get => _fishesNumber; set => _fishesNumber = value; }
+        public int BlocksNumber { get => _BlocksNumber; set => _BlocksNumber = value; }
 
         public Ocean(int width = DefaultWidth, int hight = DefaultHigth, int timeToReproduce = DefaultTimeToReproduce)
         {

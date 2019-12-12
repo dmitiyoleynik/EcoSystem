@@ -29,7 +29,10 @@ namespace EcoSystem
 
         public void Move(Direction d)
         {
-            FishManager.SwopCell(_position, _position + d, _ocean);
+            if (FishManager.IsCell(_position + d, _ocean))
+            {
+                FishManager.SwopCell(_position, _position + d, _ocean);
+            }
         }
 
         public void Die()
@@ -39,14 +42,17 @@ namespace EcoSystem
 
         public virtual void Reproduce(Direction d)
         {
-            FishManager.CreateFish(_position + d, _ocean);
+            if (FishManager.IsCell(_position + d, _ocean))
+            {
+                FishManager.CreateFish(_position + d, _ocean);
+            }
         }
 
         public virtual void LifeCicleStep()
         {
             _currentTime++;
             Direction direct = FishManager.GetDir();
-            if (!FishManager.isCell(_position + direct, _ocean)) 
+            if (!FishManager.IsCell(_position + direct, _ocean)) 
             {
                 return;
             }

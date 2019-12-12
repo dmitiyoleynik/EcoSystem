@@ -34,7 +34,7 @@ namespace EcoSystem
             {
                 int x = _rand.Next(0, width);
                 int y = _rand.Next(0, hight);
-                if (FishManager.isCell(new Point { X = x, Y = y }, _ocean))
+                if (FishManager.IsCell(new Point { X = x, Y = y }, _ocean))
                 {
                     FishManager.CreateShark(new Point { X = x, Y = y }, _ocean);
                 }
@@ -47,7 +47,7 @@ namespace EcoSystem
             {
                 int x = _rand.Next(0, width);
                 int y = _rand.Next(0, hight);
-                if (FishManager.isCell(new Point { X = x, Y = y }, _ocean))
+                if (FishManager.IsCell(new Point { X = x, Y = y }, _ocean))
                 {
                     FishManager.CreateFish(new Point { X = x, Y = y }, _ocean);
                 }
@@ -60,7 +60,7 @@ namespace EcoSystem
             {
                 int x = _rand.Next(0, width);
                 int y = _rand.Next(0, hight);
-                if (FishManager.isCell(new Point { X = x, Y = y }, _ocean))
+                if (FishManager.IsCell(new Point { X = x, Y = y }, _ocean))
                 {
                     FishManager.CreateBlock(new Point { X = x, Y = y }, _ocean);
                 }
