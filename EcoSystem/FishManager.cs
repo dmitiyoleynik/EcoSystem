@@ -8,6 +8,7 @@ namespace EcoSystem
     {
         #region variables 
         static RandomBehavior _randomBehavior = new RandomBehavior();
+        static FishPlay _fishPlay;
         #endregion
 
         static public bool PointOutOfRange(Point p,Ocean ocean)
@@ -17,6 +18,11 @@ namespace EcoSystem
                 return true;
             }
             else return false;
+        }
+
+        static public void SetFishPlay(FishPlay fishPlay)
+        {
+            _fishPlay = fishPlay;
         }
 
         static public void CreateBlock(Point p, Ocean ocean)
@@ -39,6 +45,7 @@ namespace EcoSystem
 
             ocean[p.X, p.Y] = new Fish(p, ocean);
             ocean.FishesNumber++;
+            _fishPlay.Play += (ocean[p.X, p.Y] as Fish).LifeCicleStep;
         }
 
         static public void CreateShark(Point p,Ocean ocean)
@@ -50,6 +57,7 @@ namespace EcoSystem
 
             ocean[p.X, p.Y] = new Shark(p, ocean);
            ocean.SharksNumber++;
+            _fishPlay.Play += (ocean[p.X, p.Y] as Shark).LifeCicleStep;
         }
 
         static public bool IsCell(Point p, Ocean ocean)
@@ -139,11 +147,15 @@ namespace EcoSystem
             if (IsFish(p, ocean))
             {
                ocean.FishesNumber--;
+               _fishPlay.Play += (ocean[p.X, p.Y] as Fish).LifeCicleStep;
+
             }
             if (IsShark(p, ocean))
             {
                 ocean.SharksNumber--;
+               _fishPlay.Play += (ocean[p.X, p.Y] as Shark).LifeCicleStep;
             }
+
             ocean[p.X, p.Y] = null;
         }
 

@@ -37,6 +37,7 @@ namespace EcoSystem
 
         public void Die()
         {
+
             FishManager.KillCell(_position, _ocean);
         }
 
