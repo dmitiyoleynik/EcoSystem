@@ -18,8 +18,8 @@ namespace EcoSystem
         protected Ocean _ocean;
         #endregion
 
-        public Fish(Point p,Ocean ocean, int reproduceTime = DefaultReproduceTime, int dieTime = DefaultDieTime)
-            :base(p)
+        public Fish(Point p, Ocean ocean, int reproduceTime = DefaultReproduceTime, int dieTime = DefaultDieTime)
+            : base(p)
         {
             this._timeToReproduce = reproduceTime;
             this._timeToDie = dieTime;
@@ -37,7 +37,6 @@ namespace EcoSystem
 
         public void Die()
         {
-
             FishManager.KillCell(_position, _ocean);
         }
 
@@ -53,17 +52,12 @@ namespace EcoSystem
         {
             _currentTime++;
             Direction direct = FishManager.GetDir();
-            if (!FishManager.IsCell(_position + direct, _ocean)) 
-            {
-                return;
-            }
+
             if (_currentTime >= _timeToDie)
             {
                 Die();
-                return;
             }
-
-            if (_currentTime >= _timeToReproduce)
+            else if (_currentTime >= _timeToReproduce)
             {
                 _currentTime = 0;
                 Reproduce(direct);
@@ -72,6 +66,7 @@ namespace EcoSystem
             {
                 Move(direct);
             }
+
         }
 
     }

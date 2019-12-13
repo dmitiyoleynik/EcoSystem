@@ -11,6 +11,5 @@ namespace EcoSystem
         {
             Play?.Invoke();
         }
-
     }
 }

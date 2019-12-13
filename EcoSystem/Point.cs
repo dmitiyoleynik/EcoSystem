@@ -13,6 +13,7 @@ namespace EcoSystem
         {
             return $"X = {X}, Y = {Y}";
         } 
+
         public static Point operator +(Point p, Direction d)
         {
             switch (d)
@@ -28,5 +29,6 @@ namespace EcoSystem
             }
             throw new Exception("Direction has unexpected value in addition method.");
         }
+
     }
 }

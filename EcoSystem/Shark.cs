@@ -10,8 +10,8 @@ namespace EcoSystem
         protected int _currentTimeToDie;
         #endregion
 
-        public Shark(Point p,Ocean ocean, int reproduceTime = DefaultReproduceTime, int dieTime = DefaultDieTime)
-            : base(p, ocean, reproduceTime, dieTime) 
+        public Shark(Point p, Ocean ocean, int reproduceTime = DefaultReproduceTime, int dieTime = DefaultDieTime)
+            : base(p, ocean, reproduceTime, dieTime)
         {
             this.Icon = FishIcon.Shark;
         }
@@ -30,7 +30,7 @@ namespace EcoSystem
                 FishManager.CreateShark(_position + d, _ocean);
             }
         }
-      
+
         public override void LifeCicleStep()
         {
             _currentTime++;
@@ -40,29 +40,23 @@ namespace EcoSystem
             if (_currentTime >= _timeToDie)
             {
                 Die();
-                return;
-            }
-
-            if (FishManager.IsFish(_position+direct,_ocean))
-            {
-                EatFish(direct);
-            }
-
-            if (!FishManager.IsCell(_position + direct, _ocean))
-            {
-                return;
-            }
-
-            if (_currentTime >= _timeToReproduce)
-            {
-                _currentTime = 0;
-                Reproduce(direct);
             }
             else
             {
-                Move(direct);
+                if (FishManager.IsFish(_position + direct, _ocean))
+                {
+                    EatFish(direct);
+                }
+                else if (_currentTime >= _timeToReproduce)
+                {
+                    _currentTime = 0;
+                    Reproduce(direct);
+                }
+                else
+                {
+                    Move(direct);
+                }
             }
-
         }
     }
 }
