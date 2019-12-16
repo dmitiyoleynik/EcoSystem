@@ -91,6 +91,7 @@ namespace EcoSystem
             int x = _rand.Next(0, width);
             int y = _rand.Next(0, hight);
             Point point = new Point { X = x, Y = y };
+
             return point;
         }
 

@@ -19,6 +19,7 @@ namespace EcoSystem
             {
                 return true;
             }
+
             else return false;
 
         }
@@ -73,6 +74,7 @@ namespace EcoSystem
         {
             bool result = PointOutOfRange(p, ocean) 
                 ? false : ocean[p.X, p.Y] == null;
+
             return result;
 
         }
@@ -81,6 +83,7 @@ namespace EcoSystem
         {
             bool result = PointOutOfRange(p, ocean) 
                 ? false : (ocean[p.X, p.Y] is Block);
+
             return result;
 
         }
@@ -89,6 +92,7 @@ namespace EcoSystem
         {
             bool result = PointOutOfRange(p, ocean) 
                 ? false : (ocean[p.X, p.Y] is Fish);
+
             return result;
 
         }
@@ -97,6 +101,7 @@ namespace EcoSystem
         {
             bool result = PointOutOfRange(p, ocean) 
                 ? false : (ocean[p.X, p.Y] is Shark);
+
             return result;
 
         }
