@@ -4,7 +4,7 @@ using System.Text;
 
 namespace EcoSystem
 {
-    public enum FishIcon
+    public enum CellIcon
     {
         Block = '#',
         Cell = 'C',

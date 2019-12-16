@@ -23,7 +23,7 @@ namespace EcoSystem
         {
             this._timeToReproduce = reproduceTime;
             this._timeToDie = dieTime;
-            this.Icon = FishIcon.Fish;
+            this.Icon = CellIcon.Fish;
             _ocean = ocean;
         }
 
@@ -66,8 +66,6 @@ namespace EcoSystem
             {
                 Move(direct);
             }
-
         }
-
     }
 }

@@ -32,9 +32,7 @@ namespace EcoSystem
         {
             for (int i = 0; i < number; i++)
             {
-                int x = _rand.Next(0, width);
-                int y = _rand.Next(0, hight);
-                Point point = new Point { X = x, Y = y };
+                Point point = GetRandomPoint(width, hight);
 
                 if (FishManager.IsCell(point, _ocean))
                 {
@@ -51,9 +49,7 @@ namespace EcoSystem
         {
             for (int i = 0; i < number; i++)
             {
-                int x = _rand.Next(0, width);
-                int y = _rand.Next(0, hight);
-                Point point = new Point { X = x, Y = y };
+                Point point = GetRandomPoint(width, hight);
 
                 if (FishManager.IsCell(point, _ocean))
                 {
@@ -70,9 +66,7 @@ namespace EcoSystem
         {
             for (int i = 0; i < number; i++)
             {
-                int x = _rand.Next(0, width);
-                int y = _rand.Next(0, hight);
-                Point point = new Point { X = x, Y = y };
+                Point point = GetRandomPoint(width, hight);
 
                 if (FishManager.IsCell(point, _ocean))
                 {
@@ -83,6 +77,14 @@ namespace EcoSystem
                     i--;
                 }
             }
+        }
+
+        public Point GetRandomPoint(int width, int hight)
+        {
+            int x = _rand.Next(0, width);
+            int y = _rand.Next(0, hight);
+            Point point = new Point { X = x, Y = y };
+            return point;
         }
 
     }

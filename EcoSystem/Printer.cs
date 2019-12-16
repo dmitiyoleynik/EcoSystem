@@ -15,7 +15,7 @@ namespace EcoSystem
                 {
                     if (ocean[j, i] != null)
                     {
-                        FishIconWrite(ocean[j, i].Icon);
+                        Console.Write(GetCellIcon(ocean[j,i].Icon));
                     }
                     else
                     {
@@ -27,24 +27,24 @@ namespace EcoSystem
             Console.WriteLine($"Blocks: {ocean.BlocksNumber}, sharks: {ocean.SharksNumber}, fishes: {ocean.FishesNumber}");
         }
 
-        public void FishIconWrite(FishIcon fi)
+        public char GetCellIcon(CellIcon fi)
         {
-            String fishImage = " ";
+            char fishImage = ' ';
             switch (fi)
             {
-                case FishIcon.Block:
-                    fishImage = "#";
+                case CellIcon.Block:
+                    fishImage = '#';
                     break;
-                case FishIcon.Fish:
-                    fishImage = "F";
+                case CellIcon.Fish:
+                    fishImage = 'F';
                     break;
-                case FishIcon.Shark:
-                    fishImage = "S";
+                case CellIcon.Shark:
+                    fishImage = 'S';
                     break;
                 default:
                     break;
             }
-            Console.Write(fishImage);
+            return fishImage;
         }
     }
 }

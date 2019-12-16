@@ -7,7 +7,7 @@ namespace EcoSystem
     static class FishManager
     {
         #region variables 
-        static RandomBehavior _randomBehavior = new RandomBehavior();
+        static IRandomBehavior _randomBehavior = new RandomBehavior();
         static FishPlay _fishPlay;
         #endregion
 
@@ -113,13 +113,12 @@ namespace EcoSystem
                 if (IsFish(p, ocean))
                 {
                     ocean.FishesNumber--;
-                    _fishPlay.Play += (ocean[p.X, p.Y] as Fish).LifeCicleStep;
-
+                    _fishPlay.Play -= (ocean[p.X, p.Y] as Fish).LifeCicleStep;
                 }
                 if (IsShark(p, ocean))
                 {
                     ocean.SharksNumber--;
-                    _fishPlay.Play += (ocean[p.X, p.Y] as Shark).LifeCicleStep;
+                    _fishPlay.Play -= (ocean[p.X, p.Y] as Shark).LifeCicleStep;
                 }
                 ocean[p.X, p.Y] = null;
             }

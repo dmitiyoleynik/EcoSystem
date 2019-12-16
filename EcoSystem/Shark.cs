@@ -13,7 +13,7 @@ namespace EcoSystem
         public Shark(Point p, Ocean ocean, int reproduceTime = DefaultReproduceTime, int dieTime = DefaultDieTime)
             : base(p, ocean, reproduceTime, dieTime)
         {
-            this.Icon = FishIcon.Shark;
+            this.Icon = CellIcon.Shark;
         }
 
         public void EatFish(Direction dir)
