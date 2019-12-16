@@ -32,12 +32,12 @@ namespace EcoSystem
         {
             if (!PointOutOfRange(p, ocean) && IsCell(p, ocean))
             {
-                ocean[p.X, p.Y] = new Block(p);
+                ocean[p.X, p.Y] = new Block(p, ocean);
                 ocean.BlocksNumber++;
             }
             else
             {
-                throw new Exception("Block can't be created on non-cell point");
+                throw new ArgumentException("Block can't be created on non-cell point");
             }
         }
 
@@ -51,7 +51,7 @@ namespace EcoSystem
             }
             else
             {
-                throw new Exception("Fish can't be created on non-cell point");
+                throw new ArgumentException("Fish can't be created on non-cell point");
             }
         }
 
@@ -65,34 +65,38 @@ namespace EcoSystem
             }
             else
             {
-                throw new Exception("Shark can't be created on non-cell point");
+                throw new ArgumentException("Shark can't be created on non-cell point");
             }
         }
 
         static public bool IsCell(Point p, Ocean ocean)
         {
-            bool result = PointOutOfRange(p, ocean) ? false : ocean[p.X, p.Y] == null;
+            bool result = PointOutOfRange(p, ocean) 
+                ? false : ocean[p.X, p.Y] == null;
             return result;
 
         }
 
         static public bool IsBlock(Point p, Ocean ocean)
         {
-            bool result = PointOutOfRange(p, ocean) ? false : (ocean[p.X, p.Y] is Block);
+            bool result = PointOutOfRange(p, ocean) 
+                ? false : (ocean[p.X, p.Y] is Block);
             return result;
 
         }
 
         static public bool IsFish(Point p, Ocean ocean)
         {
-            bool result = PointOutOfRange(p, ocean) ? false : (ocean[p.X, p.Y] is Fish);
+            bool result = PointOutOfRange(p, ocean) 
+                ? false : (ocean[p.X, p.Y] is Fish);
             return result;
 
         }
 
         static public bool IsShark(Point p, Ocean ocean)
         {
-            bool result = PointOutOfRange(p, ocean) ? false : (ocean[p.X, p.Y] is Shark);
+            bool result = PointOutOfRange(p, ocean) 
+                ? false : (ocean[p.X, p.Y] is Shark);
             return result;
 
         }

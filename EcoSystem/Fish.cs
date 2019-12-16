@@ -18,17 +18,16 @@ namespace EcoSystem
         protected int _timeToReproduce;
         protected int _timeToDie;
         protected int _currentTime = 0;
-        protected Ocean _ocean;
 
         #endregion
 
-        public Fish(Point p, Ocean ocean, int reproduceTime = DEFAULT_REPRODUCE_TIME, int dieTime = DEFAULT_DIE_TIME)
-            : base(p)
+        public Fish(Point p, Ocean ocean, 
+            int reproduceTime = DEFAULT_REPRODUCE_TIME, int dieTime = DEFAULT_DIE_TIME)
+            : base(p, ocean)
         {
             this._timeToReproduce = reproduceTime;
             this._timeToDie = dieTime;
             this.Icon = CellIcon.Fish;
-            _ocean = ocean;
         }
 
         public void Move(Direction d)

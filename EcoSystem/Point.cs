@@ -33,7 +33,7 @@ namespace EcoSystem
                     point = new Point { X = p.X + 1, Y = p.Y };
                     break;
                 default:
-                    throw new Exception("Direction has unexpected value in addition method.");
+                    throw new ArgumentException("Direction has unexpected value in addition method.");
             }
 
             return point;

@@ -12,7 +12,9 @@ namespace EcoSystem
 
         #endregion
 
-        public Shark(Point p, Ocean ocean, int reproduceTime = DEFAULT_REPRODUCE_TIME, int dieTime = DEFAULT_DIE_TIME)
+        public Shark(Point p, Ocean ocean, 
+            int reproduceTime = DEFAULT_REPRODUCE_TIME,
+            int dieTime = DEFAULT_DIE_TIME)
             : base(p, ocean, reproduceTime, dieTime)
         {
             this.Icon = CellIcon.Shark;

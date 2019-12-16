@@ -49,7 +49,8 @@ namespace EcoSystem
         
         public int BlocksNumber { get => _BlocksNumber; set => _BlocksNumber = value; }
 
-        public Ocean(int width = DEFAULT_WIDTH, int hight = DEFAULT_HIGHT, int timeToReproduce = DEFAULT_TIME_TO_REPRODUCE)
+        public Ocean(int width = DEFAULT_WIDTH,
+            int hight = DEFAULT_HIGHT, int timeToReproduce = DEFAULT_TIME_TO_REPRODUCE)
         {
             _width = width;
             _hight = hight;

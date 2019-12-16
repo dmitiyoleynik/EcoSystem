@@ -24,7 +24,9 @@ namespace EcoSystem
                 }
                 Console.WriteLine();
             }
-            Console.WriteLine($"Blocks: {ocean.BlocksNumber}, sharks: {ocean.SharksNumber}, fishes: {ocean.FishesNumber}");
+            Console.WriteLine($"Blocks: {ocean.BlocksNumber}, " +
+                $"sharks: {ocean.SharksNumber}, " +
+                $"fishes: {ocean.FishesNumber}");
         }
 
         public char GetCellIcon(CellIcon fi)
@@ -44,6 +46,7 @@ namespace EcoSystem
                 default:
                     break;
             }
+
             return fishImage;
         }
     }
