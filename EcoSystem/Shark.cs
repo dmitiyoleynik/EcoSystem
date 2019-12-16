@@ -6,11 +6,13 @@ namespace EcoSystem
 {
     public class Shark : Fish
     {
-        #region variables 
+        #region fields  
+
         protected int _currentTimeToDie;
+
         #endregion
 
-        public Shark(Point p, Ocean ocean, int reproduceTime = DefaultReproduceTime, int dieTime = DefaultDieTime)
+        public Shark(Point p, Ocean ocean, int reproduceTime = DEFAULT_REPRODUCE_TIME, int dieTime = DEFAULT_DIE_TIME)
             : base(p, ocean, reproduceTime, dieTime)
         {
             this.Icon = CellIcon.Shark;

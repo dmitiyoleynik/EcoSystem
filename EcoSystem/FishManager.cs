@@ -6,9 +6,11 @@ namespace EcoSystem
 {
     static class FishManager
     {
-        #region variables 
+        #region 
+
         static IRandomBehavior _randomBehavior = new RandomBehavior();
         static FishPlay _fishPlay;
+
         #endregion
 
         static public bool PointOutOfRange(Point p, Ocean ocean)
@@ -148,5 +150,6 @@ namespace EcoSystem
         {
             return _randomBehavior.GetRandomDirection();
         }
+
     }
 }

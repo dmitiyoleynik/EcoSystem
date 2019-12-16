@@ -7,28 +7,32 @@ namespace EcoSystem
     class RandomInitializer: IInitializer
     {
         #region consts
-        protected const int defaultSharksNumber = 20;
-        protected const int defaultFishesNumber = 20;
-        protected const int defaultBlocksNumber = 150;
+
+        protected const int DEFAULT_SHARKS_NUMBER = 20;
+        protected const int DEFAULT_FISHES_NUMBER = 20;
+        protected const int DEFAULT_BLOCKS_NUMBER = 150;
+        
         #endregion
 
-        #region variables 
+        #region fields 
+        
         private Random _rand = new Random();
         private Ocean _ocean;
+        
         #endregion   
         public RandomInitializer(Ocean ocean)
         {
             _ocean = ocean;
         }
 
-        public void Initialize(int widthRange,int higthRange)
+        public void Initialize(int widthRange, int higthRange)
         {
             SetBlocksRandom(widthRange, higthRange);
             SetFishesRandom(widthRange, higthRange);
             SetSharksRandom(widthRange, higthRange);
         }
         
-        public void SetSharksRandom(int width, int hight, int number = defaultSharksNumber)
+        public void SetSharksRandom(int width, int hight, int number = DEFAULT_SHARKS_NUMBER)
         {
             for (int i = 0; i < number; i++)
             {
@@ -45,7 +49,7 @@ namespace EcoSystem
             }
         }
        
-        public void SetFishesRandom(int width, int hight, int number = defaultFishesNumber)
+        public void SetFishesRandom(int width, int hight, int number = DEFAULT_FISHES_NUMBER)
         {
             for (int i = 0; i < number; i++)
             {
@@ -62,7 +66,7 @@ namespace EcoSystem
             }
         }
        
-        public void SetBlocksRandom(int width, int hight, int number = defaultBlocksNumber)
+        public void SetBlocksRandom(int width, int hight, int number = DEFAULT_BLOCKS_NUMBER)
         {
             for (int i = 0; i < number; i++)
             {

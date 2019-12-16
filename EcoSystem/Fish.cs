@@ -7,18 +7,22 @@ namespace EcoSystem
     public class Fish : Cell
     {
         #region consts
-        protected const int DefaultReproduceTime = 30;
-        protected const int DefaultDieTime = 45;
+
+        protected const int DEFAULT_REPRODUCE_TIME = 30;
+        protected const int DEFAULT_DIE_TIME = 45;
+
         #endregion
 
-        #region variables 
+        #region fields
+        
         protected int _timeToReproduce;
         protected int _timeToDie;
         protected int _currentTime = 0;
         protected Ocean _ocean;
+
         #endregion
 
-        public Fish(Point p, Ocean ocean, int reproduceTime = DefaultReproduceTime, int dieTime = DefaultDieTime)
+        public Fish(Point p, Ocean ocean, int reproduceTime = DEFAULT_REPRODUCE_TIME, int dieTime = DEFAULT_DIE_TIME)
             : base(p)
         {
             this._timeToReproduce = reproduceTime;

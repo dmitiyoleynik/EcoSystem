@@ -6,6 +6,7 @@ namespace EcoSystem
 {
     public interface IInitializer
     {
-        void Initialize(int widthRange,int higthRange);
+        void Initialize(int widthRange, int higthRange);
     }
+
 }

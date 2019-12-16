@@ -7,6 +7,7 @@ namespace EcoSystem
     public struct Point
     {
         public int Y { get; set; }
+
         public int X { get; set; }
 
         public override string ToString()
@@ -16,18 +17,26 @@ namespace EcoSystem
 
         public static Point operator +(Point p, Direction d)
         {
+            Point point;
             switch (d)
             {
                 case Direction.Up:
-                    return new Point { X = p.X, Y = p.Y - 1 };
+                    point = new Point { X = p.X, Y = p.Y - 1 };
+                    break;
                 case Direction.Down:
-                    return new Point { X = p.X, Y = p.Y + 1 };
+                    point =  new Point { X = p.X, Y = p.Y + 1 };
+                    break;
                 case Direction.Left:
-                    return new Point { X = p.X - 1, Y = p.Y };
+                    point = new Point { X = p.X - 1, Y = p.Y };
+                    break;
                 case Direction.Right:
-                    return new Point { X = p.X + 1, Y = p.Y };
+                    point = new Point { X = p.X + 1, Y = p.Y };
+                    break;
+                default:
+                    throw new Exception("Direction has unexpected value in addition method.");
             }
-            throw new Exception("Direction has unexpected value in addition method.");
+
+            return point;
         }
 
     }
