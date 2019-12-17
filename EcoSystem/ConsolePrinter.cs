@@ -4,7 +4,7 @@ using System.Text;
 
 namespace EcoSystem
 {
-    class Printer : IPrinter
+    class ConsolePrinter : IPrinter
     {
         public void Print(Ocean ocean)
         {

@@ -19,7 +19,7 @@ namespace EcoSystem
             _fishPlay = new FishPlay();
             _ocean = new Ocean(_fishPlay);
             _initializer = new RandomInitializer(_ocean);
-            _printer = new Printer();
+            _printer = new ConsolePrinter();
         }
 
         public void PrintOcean()
