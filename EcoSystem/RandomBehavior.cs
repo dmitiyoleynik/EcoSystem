@@ -4,13 +4,13 @@ using System.Text;
 
 namespace EcoSystem
 {
-    class RandomBehavior : IRandomBehavior
+    static class RandomBehavior 
     {
-        private Random _rand = new Random();
+        private static Random _rand = new Random();
 
-        public Direction GetRandomDirection()
+        public static Direction GetRandomDirection()
         {
-            return (Direction)(_rand.Next(0, 1000) % 4 + 1);
+            return (Direction)(_rand.Next(0, 4) + 1);
         }
     }
 }

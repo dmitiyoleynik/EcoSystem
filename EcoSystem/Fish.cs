@@ -32,29 +32,29 @@ namespace EcoSystem
 
         public void Move(Direction d)
         {
-            if (FishManager.IsCell(_position + d, _ocean))
+            if (_ocean.IsCell(_position + d))
             {
-                FishManager.SwopCell(_position, _position + d, _ocean);
+                _ocean.SwopCell(_position, _position + d);
             }
         }
 
         public void Die()
         {
-            FishManager.KillCell(_position, _ocean);
+            _ocean.KillCell(_position);
         }
 
         public virtual void Reproduce(Direction d)
         {
-            if (FishManager.IsCell(_position + d, _ocean))
+            if (_ocean.IsCell(_position + d))
             {
-                FishManager.CreateFish(_position + d, _ocean);
+                _ocean.CreateFish(_position + d);
             }
         }
 
         public virtual void LifeCicleStep()
         {
             _currentTime++;
-            Direction direct = FishManager.GetDir();
+            Direction direct = RandomBehavior.GetRandomDirection();
 
             if (_currentTime >= _timeToDie)
             {

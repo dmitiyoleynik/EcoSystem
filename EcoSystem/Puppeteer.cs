@@ -1,23 +1,25 @@
-﻿namespace EcoSystem
+﻿using System;
+
+namespace EcoSystem
 {
-    class Puppeteer
+    public class Puppeteer
     {
         #region fields
         
         private Ocean _ocean;
         private IInitializer _initializer;
         private IPrinter _printer;
+
         private FishPlay _fishPlay;
 
         #endregion
 
         public Puppeteer()
         {
-            _ocean = new Ocean();
+            _fishPlay = new FishPlay();
+            _ocean = new Ocean(_fishPlay);
             _initializer = new RandomInitializer(_ocean);
             _printer = new Printer();
-            _fishPlay = new FishPlay();
-            FishManager.SetFishPlay(_fishPlay);
         }
 
         public void PrintOcean()

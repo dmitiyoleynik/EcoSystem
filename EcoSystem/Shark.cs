@@ -22,16 +22,16 @@ namespace EcoSystem
 
         public void EatFish(Direction dir)
         {
-            FishManager.KillCell(_position + dir, _ocean);
+            _ocean.KillCell(_position + dir);
             _currentTimeToDie = _timeToDie;
             Move(dir);
         }
 
         public override void Reproduce(Direction d)
         {
-            if (FishManager.IsCell(_position + d, _ocean))
+            if (_ocean.IsCell(_position + d))
             {
-                FishManager.CreateShark(_position + d, _ocean);
+                _ocean.CreateShark(_position + d);
             }
         }
 
@@ -39,7 +39,7 @@ namespace EcoSystem
         {
             _currentTime++;
             _currentTimeToDie++;
-            Direction direct = FishManager.GetDir();
+            Direction direct = RandomBehavior.GetRandomDirection();
 
             if (_currentTime >= _timeToDie)
             {
@@ -47,7 +47,7 @@ namespace EcoSystem
             }
             else
             {
-                if (FishManager.IsFish(_position + direct, _ocean))
+                if (_ocean.IsFish(_position + direct))
                 {
                     EatFish(direct);
                 }

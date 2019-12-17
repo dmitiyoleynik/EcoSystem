@@ -39,9 +39,9 @@ namespace EcoSystem
             {
                 Point point = GetRandomPoint(width, hight);
 
-                if (FishManager.IsCell(point, _ocean))
+                if (_ocean.IsCell(point))
                 {
-                    FishManager.CreateShark(point, _ocean);
+                    _ocean.CreateShark(point);
                 }
                 else
                 {
@@ -57,9 +57,9 @@ namespace EcoSystem
             {
                 Point point = GetRandomPoint(width, hight);
 
-                if (FishManager.IsCell(point, _ocean))
+                if (_ocean.IsCell(point))
                 {
-                    FishManager.CreateFish(point, _ocean);
+                    _ocean.CreateFish(point);
                 }
                 else
                 {
@@ -75,9 +75,9 @@ namespace EcoSystem
             {
                 Point point = GetRandomPoint(width, hight);
 
-                if (FishManager.IsCell(point, _ocean))
+                if (_ocean.IsCell(point))
                 {
-                    FishManager.CreateBlock(point, _ocean);
+                    _ocean.CreateBlock(point);
                 }
                 else
                 {
