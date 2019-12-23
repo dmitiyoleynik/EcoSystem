@@ -22,7 +22,8 @@ namespace EcoSystem
         #endregion
 
         public Fish(Point p, Ocean ocean, 
-            int reproduceTime = DEFAULT_REPRODUCE_TIME, int dieTime = DEFAULT_DIE_TIME)
+            int reproduceTime = DEFAULT_REPRODUCE_TIME,
+            int dieTime = DEFAULT_DIE_TIME)
             : base(p, ocean)
         {
             this._timeToReproduce = reproduceTime;
