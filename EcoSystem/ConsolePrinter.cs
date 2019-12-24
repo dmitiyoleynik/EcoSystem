@@ -15,7 +15,7 @@ namespace EcoSystem
                 {
                     if (ocean[j, i] != null)
                     {
-                        Console.Write(GetCellIcon(ocean[j,i].Icon));
+                        Console.Write(GetCellIcon(ocean[j,i]));
                     }
                     else
                     {
@@ -29,7 +29,7 @@ namespace EcoSystem
                 $"fishes: {ocean.FishesNumber}");
         }
 
-        public char GetCellIcon(CellIcon fi)
+        public char GetCellIcon(CellIcon? fi)
         {
             char fishImage = ' ';
             switch (fi)

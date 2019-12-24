@@ -33,22 +33,22 @@ namespace EcoSystem
 
         public void Move(Direction d)
         {
-            if (_ocean.IsCell(_position + d))
+            if (_container.IsCell(_position + d))
             {
-                _ocean.SwopCell(_position, _position + d);
+                _container.SwopCell(_position, _position + d);
             }
         }
 
         public void Die()
         {
-            _ocean.KillCell(_position);
+            _container.KillCell(_position);
         }
 
         public virtual void Reproduce(Direction d)
         {
-            if (_ocean.IsCell(_position + d))
+            if (_container.IsCell(_position + d))
             {
-                _ocean.CreateFish(_position + d);
+                _container.CreateFish(_position + d);
             }
         }
 

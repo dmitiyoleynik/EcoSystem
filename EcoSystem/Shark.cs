@@ -22,16 +22,16 @@ namespace EcoSystem
 
         public void EatFish(Direction dir)
         {
-            _ocean.KillCell(_position + dir);
+            _container.KillCell(_position + dir);
             _currentTimeToDie = _timeToDie;
             Move(dir);
         }
 
         public override void Reproduce(Direction d)
         {
-            if (_ocean.IsCell(_position + d))
+            if (_container.IsCell(_position + d))
             {
-                _ocean.CreateShark(_position + d);
+                _container.CreateShark(_position + d);
             }
         }
 
@@ -47,7 +47,7 @@ namespace EcoSystem
             }
             else
             {
-                if (_ocean.IsFish(_position + direct))
+                if (_container.IsFish(_position + direct))
                 {
                     EatFish(direct);
                 }

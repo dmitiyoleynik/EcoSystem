@@ -9,24 +9,25 @@ namespace EcoSystem
         #region fields 
 
         protected Point _position;
-        protected readonly Ocean _ocean;
+        //protected readonly Ocean _ocean;
+        protected readonly ICellContainer _container;
         #endregion
 
-        public CellIcon Icon { get; set; }
+        public CellIcon? Icon { get; set; }
 
         public Point Position { get => _position; set => _position = value; }
 
-        public Cell(Point p, Ocean ocean)
+        public Cell(Point p, ICellContainer container)
         {
             _position = p;
-            _ocean = ocean;
+            _container = container;
         }
 
-        public Cell(int x, int y, Ocean ocean)
+        public Cell(int x, int y, ICellContainer container)
         {
             _position.X = x;
             _position.Y = y;
-            _ocean = ocean;
+            _container = container;
         }
     }
 }

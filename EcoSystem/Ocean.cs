@@ -5,7 +5,7 @@ using System.Text;
 
 namespace EcoSystem
 {
-    public class Ocean:IEnumerable
+    public class Ocean : IEnumerable, ICellContainer
     {
         #region const
 
@@ -28,31 +28,27 @@ namespace EcoSystem
 
         #endregion
 
-        public Cell this[int x, int y]
+        public CellIcon? this[int x, int y]
         {
             get
             {
-                return _cells[x, y];
-            }
-            set
-            {
-                _cells[x, y] = value;
+                return _cells[x, y]?.Icon;
             }
         }
 
-        public int Hight { get => _hight;  }
+        public int Hight { get => _hight; }
 
-        public int Width { get => _width; } 
+        public int Width { get => _width; }
 
         public int SharksNumber { get => _sharksNumber; set => _sharksNumber = value; }
-        
+
         public int FishesNumber { get => _fishesNumber; set => _fishesNumber = value; }
-        
+
         public int BlocksNumber { get => _BlocksNumber; set => _BlocksNumber = value; }
 
-        public Ocean(FishPlay fishPlay, 
+        public Ocean(FishPlay fishPlay,
             int width = DEFAULT_WIDTH,
-            int hight = DEFAULT_HIGHT, 
+            int hight = DEFAULT_HIGHT,
             int timeToReproduce = DEFAULT_TIME_TO_REPRODUCE)
         {
             _width = width;
@@ -61,7 +57,7 @@ namespace EcoSystem
             _cells = new Cell[width, hight];
             _fishPlay = fishPlay;
         }
-        
+
         public IEnumerator GetEnumerator()
         {
             return _cells.GetEnumerator();
