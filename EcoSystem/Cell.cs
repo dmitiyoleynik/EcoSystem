@@ -9,7 +9,6 @@ namespace EcoSystem
         #region fields 
 
         protected Point _position;
-        //protected readonly Ocean _ocean;
         protected readonly ICellContainer _container;
         #endregion
 
