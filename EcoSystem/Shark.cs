@@ -30,7 +30,6 @@
                 Shark cell = new Shark(newPoint);
                 _container.SetCell(newPoint, cell, cell.LifeCicleStep);
             }
-            
         }
 
         public override void LifeCicleStep(ICellContainer _container)

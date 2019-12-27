@@ -31,8 +31,7 @@ namespace EcoSystem
         public int Width { get; }
 
         public Ocean(int width = Constants.DEFAULT_WIDTH,
-            int hight = Constants.DEFAULT_HIGHT,
-            int timeToReproduce = Constants.DEFAULT_TIME_TO_REPRODUCE)
+            int hight = Constants.DEFAULT_HIGHT)
         {
             Width = width;
             Hight = hight;
@@ -63,20 +62,10 @@ namespace EcoSystem
                 _cells[p.X, p.Y] = null;
             }
         }
-
-        public bool IsBlock(Point p)
-        {
-            return !PointOutOfRange(p) && _cells[p.X, p.Y]?.Icon == CellIcon.Block;
-        }
-
+        
         public bool IsFish(Point p)
         {
             return !PointOutOfRange(p) && _cells[p.X, p.Y]?.Icon == CellIcon.Fish;
-        }
-
-        public bool IsShark(Point p)
-        {
-            return !PointOutOfRange(p) && _cells[p.X, p.Y]?.Icon == CellIcon.Shark;
         }
 
         public void SwopCell(Point p1, Point p2)

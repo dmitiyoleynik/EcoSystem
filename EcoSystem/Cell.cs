@@ -13,7 +13,7 @@
 
         public Cell(int x, int y)
         {
-            Position = new Point {X = x,Y = y};
+            Position = new Point {X = x, Y = y};
         }
 
         public abstract void LifeCicleStep(ICellContainer _container);

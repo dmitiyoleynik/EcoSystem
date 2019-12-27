@@ -5,10 +5,12 @@ namespace EcoSystem
     public class FishPlayStrategy
     {
         event Action<ICellContainer> Play;
+
         public void Invoke(ICellContainer container)
         {
             Play?.Invoke(container);
         }
+
         public void AddEvent(Action<ICellContainer> action)
         {
             Play += action;
@@ -17,7 +19,6 @@ namespace EcoSystem
         public void RemoveEvent(Action<ICellContainer> action)
         {
             Play -= action;
-
         }
     }
 }

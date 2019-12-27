@@ -9,7 +9,8 @@ namespace EcoSystem
         private Random _rand = new Random();
         private ICellContainer _ocean;
         
-        #endregion   
+        #endregion  
+        
         public RandomInitializer(ICellContainer ocean)
         {
             _ocean = ocean;

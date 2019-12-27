@@ -2,7 +2,6 @@
 {
     public class Fish : Cell
     {
-
         #region fields
         
         protected int _timeToReproduce;
