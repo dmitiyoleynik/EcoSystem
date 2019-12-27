@@ -1,24 +1,13 @@
 ﻿using System;
 using System.Collections;
-using System.Collections.Generic;
-using System.Text;
 
 namespace EcoSystem
 {
     public class Ocean : IEnumerable, ICellContainer
     {
-        #region const
-
-
-
-        #endregion
-
         #region fields 
 
         private Cell[,] _cells;
-        private int _width;
-        private int _hight;
-        private int _timeToFishReproduce;
         private FishPlayStrategy _fishPlay;
 
         #endregion
@@ -37,17 +26,16 @@ namespace EcoSystem
             }
         }
 
-        public int Hight { get => _hight; }
+        public int Hight { get; }
 
-        public int Width { get => _width; }
+        public int Width { get; }
 
         public Ocean(int width = Constants.DEFAULT_WIDTH,
             int hight = Constants.DEFAULT_HIGHT,
             int timeToReproduce = Constants.DEFAULT_TIME_TO_REPRODUCE)
         {
-            _width = width;
-            _hight = hight;
-            this._timeToFishReproduce = timeToReproduce;
+            Width = width;
+            Hight = hight;
             _cells = new Cell[width, hight];
             _fishPlay = new FishPlayStrategy();
         }
@@ -59,20 +47,12 @@ namespace EcoSystem
 
         public bool IsCell(Point p)
         {
-            bool result = PointOutOfRange(p)
-                ? false : _cells[p.X, p.Y] == null;
-
-            return result;
+            return !PointOutOfRange(p) && _cells[p.X, p.Y] == null;
         }
 
         public bool PointOutOfRange(Point p)
         {
-            if (p.X >= _width || p.Y >= _hight || p.X < 0 || p.Y < 0)
-            {
-                return true;
-            }
-
-            else return false;
+            return p.X >= Width || p.Y >= Hight || p.X < 0 || p.Y < 0;
         }
 
         public void KillCell(Point p)
@@ -86,26 +66,17 @@ namespace EcoSystem
 
         public bool IsBlock(Point p)
         {
-            bool result = PointOutOfRange(p)
-                ? false : (_cells[p.X, p.Y] is Block);
-
-            return result;
+            return !PointOutOfRange(p) && _cells[p.X, p.Y]?.Icon == CellIcon.Block;
         }
 
         public bool IsFish(Point p)
         {
-            bool result = PointOutOfRange(p)
-                ? false : (_cells[p.X, p.Y] is Fish);
-
-            return result;
+            return !PointOutOfRange(p) && _cells[p.X, p.Y]?.Icon == CellIcon.Fish;
         }
 
         public bool IsShark(Point p)
         {
-            bool result = PointOutOfRange(p)
-                ? false : (_cells[p.X, p.Y] is Shark);
-
-            return result;
+            return !PointOutOfRange(p) && _cells[p.X, p.Y]?.Icon == CellIcon.Shark;
         }
 
         public void SwopCell(Point p1, Point p2)
@@ -130,9 +101,9 @@ namespace EcoSystem
 
         public void ClearOcean()
         {
-            for (int i = 0; i < _width; i++)
+            for (int i = 0; i < Width; i++)
             {
-                for (int j = 0; j < _hight; j++)
+                for (int j = 0; j < Hight; j++)
                 {
                     _cells[i, j] = null;
                 }
