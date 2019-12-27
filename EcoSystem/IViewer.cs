@@ -4,8 +4,8 @@ using System.Text;
 
 namespace EcoSystem
 {
-    interface IPrinter
+    interface IViewer
     {
-        void Print(Ocean ocean);
+        void View(ICellContainer ocean, CellsCounter counter);
     }
 }

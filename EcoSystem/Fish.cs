@@ -21,17 +21,17 @@ namespace EcoSystem
 
         #endregion
 
-        public Fish(Point p, Ocean ocean, 
+        public Fish(Point p, 
             int reproduceTime = DEFAULT_REPRODUCE_TIME,
             int dieTime = DEFAULT_DIE_TIME)
-            : base(p, ocean)
+            : base(p)
         {
             this._timeToReproduce = reproduceTime;
             this._timeToDie = dieTime;
             this.Icon = CellIcon.Fish;
         }
 
-        public void Move(Direction d)
+        public void Move(Direction d, ICellContainer _container)
         {
             if (_container.IsCell(_position + d))
             {
@@ -39,37 +39,41 @@ namespace EcoSystem
             }
         }
 
-        public void Die()
+        public void Die(ICellContainer _container)
         {
             _container.KillCell(_position);
         }
 
-        public virtual void Reproduce(Direction d)
+        public virtual void Reproduce(Direction d, ICellContainer _container)
         {
-            if (_container.IsCell(_position + d))
+            Point newPoint = _position + d;
+            if (_container.IsCell(newPoint))
             {
-                _container.CreateFish(_position + d);
+                Fish cell = new Fish(newPoint);
+                _container.SetCell(newPoint, cell,cell.LifeCicleStep);
             }
         }
 
-        public virtual void LifeCicleStep()
+        public override void LifeCicleStep(ICellContainer _container)
         {
             _currentTime++;
             Direction direct = RandomBehavior.GetRandomDirection();
 
             if (_currentTime >= _timeToDie)
             {
-                Die();
+                Die(_container);
             }
             else if (_currentTime >= _timeToReproduce)
             {
                 _currentTime = 0;
-                Reproduce(direct);
+                Reproduce(direct, _container);
             }
             else
             {
-                Move(direct);
+                Move(direct, _container);
             }
         }
+
+        
     }
 }

@@ -4,34 +4,28 @@ using System.Text;
 
 namespace EcoSystem
 {
-    class ConsolePrinter : IPrinter
+    class ConsoleViewer : IViewer
     {
-        public void Print(Ocean ocean)
+        public void View(ICellContainer ocean, CellsCounter counter)
         {
             Console.Clear();
             for (int i = 0; i < ocean.Hight; i++)
             {
                 for (int j = 0; j < ocean.Width; j++)
                 {
-                    if (ocean[j, i] != null)
-                    {
-                        Console.Write(GetCellIcon(ocean[j,i]));
-                    }
-                    else
-                    {
-                        Console.Write("-");
-                    }
+                     Console.Write(GetCellIcon(ocean[j,i]));
+                    
                 }
                 Console.WriteLine();
             }
-            Console.WriteLine($"Blocks: {ocean.BlocksNumber}, " +
-                $"sharks: {ocean.SharksNumber}, " +
-                $"fishes: {ocean.FishesNumber}");
+            Console.WriteLine($"Blocks: {counter.Blocks}, " +
+                $"sharks: {counter.Sharks}, " +
+                $"fishes: {counter.Fishes}");
         }
 
-        public char GetCellIcon(CellIcon? fi)
+        public char GetCellIcon(CellIcon fi)
         {
-            char fishImage = ' ';
+            char fishImage = '-';
             switch (fi)
             {
                 case CellIcon.Block:

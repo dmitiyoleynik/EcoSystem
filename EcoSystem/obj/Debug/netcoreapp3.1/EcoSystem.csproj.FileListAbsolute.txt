@@ -1,0 +1,11 @@
+C:\study\C#\EcoSystem\EcoSystem\bin\Debug\netcoreapp3.1\EcoSystem.exe
+C:\study\C#\EcoSystem\EcoSystem\bin\Debug\netcoreapp3.1\EcoSystem.deps.json
+C:\study\C#\EcoSystem\EcoSystem\bin\Debug\netcoreapp3.1\EcoSystem.runtimeconfig.json
+C:\study\C#\EcoSystem\EcoSystem\bin\Debug\netcoreapp3.1\EcoSystem.runtimeconfig.dev.json
+C:\study\C#\EcoSystem\EcoSystem\bin\Debug\netcoreapp3.1\EcoSystem.dll
+C:\study\C#\EcoSystem\EcoSystem\bin\Debug\netcoreapp3.1\EcoSystem.pdb
+C:\study\C#\EcoSystem\EcoSystem\obj\Debug\netcoreapp3.1\EcoSystem.csprojAssemblyReference.cache
+C:\study\C#\EcoSystem\EcoSystem\obj\Debug\netcoreapp3.1\EcoSystem.AssemblyInfoInputs.cache
+C:\study\C#\EcoSystem\EcoSystem\obj\Debug\netcoreapp3.1\EcoSystem.AssemblyInfo.cs
+C:\study\C#\EcoSystem\EcoSystem\obj\Debug\netcoreapp3.1\EcoSystem.dll
+C:\study\C#\EcoSystem\EcoSystem\obj\Debug\netcoreapp3.1\EcoSystem.pdb

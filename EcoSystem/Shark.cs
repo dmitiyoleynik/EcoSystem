@@ -12,30 +12,33 @@ namespace EcoSystem
 
         #endregion
 
-        public Shark(Point p, Ocean ocean, 
+        public Shark(Point p, 
             int reproduceTime = DEFAULT_REPRODUCE_TIME,
             int dieTime = DEFAULT_DIE_TIME)
-            : base(p, ocean, reproduceTime, dieTime)
+            : base(p,  reproduceTime, dieTime)
         {
             this.Icon = CellIcon.Shark;
         }
 
-        public void EatFish(Direction dir)
+        public void EatFish(Direction dir, ICellContainer _container)
         {
             _container.KillCell(_position + dir);
             _currentTimeToDie = _timeToDie;
-            Move(dir);
+            Move(dir, _container);
         }
 
-        public override void Reproduce(Direction d)
+        public override void Reproduce(Direction d, ICellContainer _container)
         {
-            if (_container.IsCell(_position + d))
+            Point newPoint = _position + d;
+            if (_container.IsCell(newPoint))
             {
-                _container.CreateShark(_position + d);
+                Shark cell = new Shark(newPoint);
+                _container.SetCell(newPoint, cell, cell.LifeCicleStep);
             }
+            
         }
 
-        public override void LifeCicleStep()
+        public override void LifeCicleStep(ICellContainer _container)
         {
             _currentTime++;
             _currentTimeToDie++;
@@ -43,22 +46,22 @@ namespace EcoSystem
 
             if (_currentTime >= _timeToDie)
             {
-                Die();
+                Die(_container);
             }
             else
             {
                 if (_container.IsFish(_position + direct))
                 {
-                    EatFish(direct);
+                    EatFish(direct, _container);
                 }
                 else if (_currentTime >= _timeToReproduce)
                 {
                     _currentTime = 0;
-                    Reproduce(direct);
+                    Reproduce(direct, _container);
                 }
                 else
                 {
-                    Move(direct);
+                    Move(direct, _container);
                 }
             }
         }

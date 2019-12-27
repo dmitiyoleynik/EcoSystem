@@ -21,18 +21,21 @@ namespace EcoSystem
         private int _width;
         private int _hight;
         private int _timeToFishReproduce;
-        private int _sharksNumber = 0;
-        private int _fishesNumber = 0;
-        private int _BlocksNumber = 0;
-        FishPlay _fishPlay;
+        private FishPlayStrategy _fishPlay;
 
         #endregion
 
-        public CellIcon? this[int x, int y]
+        public CellIcon this[int x, int y]
         {
             get
             {
-                return _cells[x, y]?.Icon;
+                CellIcon ci = CellIcon.Cell;
+                if(_cells[x,y] != null)
+                {
+                    ci = _cells[x, y].Icon;
+                }
+
+                return ci;
             }
         }
 
@@ -40,14 +43,7 @@ namespace EcoSystem
 
         public int Width { get => _width; }
 
-        public int SharksNumber { get => _sharksNumber; set => _sharksNumber = value; }
-
-        public int FishesNumber { get => _fishesNumber; set => _fishesNumber = value; }
-
-        public int BlocksNumber { get => _BlocksNumber; set => _BlocksNumber = value; }
-
-        public Ocean(FishPlay fishPlay,
-            int width = DEFAULT_WIDTH,
+        public Ocean(int width = DEFAULT_WIDTH,
             int hight = DEFAULT_HIGHT,
             int timeToReproduce = DEFAULT_TIME_TO_REPRODUCE)
         {
@@ -55,7 +51,7 @@ namespace EcoSystem
             _hight = hight;
             this._timeToFishReproduce = timeToReproduce;
             _cells = new Cell[width, hight];
-            _fishPlay = fishPlay;
+            _fishPlay = new FishPlayStrategy();
         }
 
         public IEnumerator GetEnumerator()
@@ -87,16 +83,7 @@ namespace EcoSystem
         {
             if (!PointOutOfRange(p))
             {
-                if (IsFish(p))
-                {
-                    _fishesNumber--;
-                    _fishPlay.Play -= (_cells[p.X, p.Y] as Fish).LifeCicleStep;
-                }
-                if (IsShark(p))
-                {
-                    SharksNumber--;
-                    _fishPlay.Play -= (_cells[p.X, p.Y] as Shark).LifeCicleStep;
-                }
+                _fishPlay.Play -= _cells[p.X, p.Y].LifeCicleStep;
                 _cells[p.X, p.Y] = null;
             }
         }
@@ -126,47 +113,6 @@ namespace EcoSystem
 
             return result;
 
-        }
-
-        public void CreateFish(Point p)
-        {
-            if (!PointOutOfRange(p) && IsCell(p))
-            {
-                _cells[p.X, p.Y] = new Fish(p, this);
-                FishesNumber++;
-                _fishPlay.Play += (_cells[p.X, p.Y] as Fish).LifeCicleStep;
-            }
-            else
-            {
-                throw new ArgumentException("Fish can't be created on non-cell point");
-            }
-        }
-
-        public void CreateShark(Point p)
-        {
-            if (!PointOutOfRange(p) && IsCell(p))
-            {
-                _cells[p.X, p.Y] = new Shark(p, this);
-                SharksNumber++;
-                _fishPlay.Play += (_cells[p.X, p.Y] as Shark).LifeCicleStep;
-            }
-            else
-            {
-                throw new ArgumentException("Shark can't be created on non-cell point");
-            }
-        }
-
-        public void CreateBlock(Point p)
-        {
-            if (!PointOutOfRange(p) && IsCell(p))
-            {
-                _cells[p.X, p.Y] = new Block(p, this);
-                BlocksNumber++;
-            }
-            else
-            {
-                throw new ArgumentException("Block can't be created on non-cell point");
-            }
         }
 
         public void SwopCell(Point p1, Point p2)
@@ -200,5 +146,22 @@ namespace EcoSystem
             }
         }
 
+        public void SetCell(Point p, Cell cell,Action<ICellContainer> act)
+        {
+            if (!PointOutOfRange(p) && IsCell(p))
+            {
+                _cells[p.X, p.Y] = cell;
+                _fishPlay.Play += act;
+            }
+            else
+            {
+                throw new ArgumentException("It can't be created on non-cell point");
+            }
+        }
+
+        public void ExecuteDay()
+        {
+            _fishPlay.Invoke(this);
+        }
     }
 }

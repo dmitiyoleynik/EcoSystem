@@ -4,11 +4,11 @@ using System.Text;
 
 namespace EcoSystem
 {
-    public enum CellIcon
+    public enum CellIcon: byte
     {
-        Block = '#',
-        Cell = 'C',
-        Fish = 'F',
-        Shark = 'S'
+        Block,
+        Cell,
+        Fish,
+        Shark
     }
 }

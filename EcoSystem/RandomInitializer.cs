@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using EcoSystem;
 
 namespace EcoSystem
 {
@@ -17,19 +18,19 @@ namespace EcoSystem
         #region fields 
         
         private Random _rand = new Random();
-        private Ocean _ocean;
+        private ICellContainer _ocean;
         
         #endregion   
-        public RandomInitializer(Ocean ocean)
+        public RandomInitializer(ICellContainer ocean)
         {
             _ocean = ocean;
         }
 
-        public void Initialize(int widthRange, int higthRange)
+        public void Initialize()
         {
-            SetBlocksRandom(widthRange, higthRange);
-            SetFishesRandom(widthRange, higthRange);
-            SetSharksRandom(widthRange, higthRange);
+            SetBlocksRandom(_ocean.Width, _ocean.Hight);
+            SetFishesRandom(_ocean.Width, _ocean.Hight);
+            SetSharksRandom(_ocean.Width, _ocean.Hight);
         }
         
         public void SetSharksRandom(int width, int hight,
@@ -41,7 +42,8 @@ namespace EcoSystem
 
                 if (_ocean.IsCell(point))
                 {
-                    _ocean.CreateShark(point);
+                    Shark newBlock = new Shark(point);
+                    _ocean.SetCell(point, newBlock,newBlock.LifeCicleStep);
                 }
                 else
                 {
@@ -59,7 +61,8 @@ namespace EcoSystem
 
                 if (_ocean.IsCell(point))
                 {
-                    _ocean.CreateFish(point);
+                    Fish newBlock = new Fish(point);
+                    _ocean.SetCell(point, newBlock,newBlock.LifeCicleStep);
                 }
                 else
                 {
@@ -77,7 +80,8 @@ namespace EcoSystem
 
                 if (_ocean.IsCell(point))
                 {
-                    _ocean.CreateBlock(point);
+                    Cell newBlock = new Block(point);
+                    _ocean.SetCell(point, newBlock,null);
                 }
                 else
                 {
