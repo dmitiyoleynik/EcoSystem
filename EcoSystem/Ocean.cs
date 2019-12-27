@@ -9,9 +9,7 @@ namespace EcoSystem
     {
         #region const
 
-        const int DEFAULT_WIDTH = 120;
-        const int DEFAULT_HIGHT = 25;
-        const int DEFAULT_TIME_TO_REPRODUCE = 30;
+
 
         #endregion
 
@@ -43,9 +41,9 @@ namespace EcoSystem
 
         public int Width { get => _width; }
 
-        public Ocean(int width = DEFAULT_WIDTH,
-            int hight = DEFAULT_HIGHT,
-            int timeToReproduce = DEFAULT_TIME_TO_REPRODUCE)
+        public Ocean(int width = Constants.DEFAULT_WIDTH,
+            int hight = Constants.DEFAULT_HIGHT,
+            int timeToReproduce = Constants.DEFAULT_TIME_TO_REPRODUCE)
         {
             _width = width;
             _hight = hight;
@@ -65,7 +63,6 @@ namespace EcoSystem
                 ? false : _cells[p.X, p.Y] == null;
 
             return result;
-
         }
 
         public bool PointOutOfRange(Point p)
@@ -76,14 +73,13 @@ namespace EcoSystem
             }
 
             else return false;
-
         }
 
         public void KillCell(Point p)
         {
             if (!PointOutOfRange(p))
             {
-                _fishPlay.Play -= _cells[p.X, p.Y].LifeCicleStep;
+                _fishPlay.RemoveEvent(_cells[p.X, p.Y].LifeCicleStep);
                 _cells[p.X, p.Y] = null;
             }
         }
@@ -94,7 +90,6 @@ namespace EcoSystem
                 ? false : (_cells[p.X, p.Y] is Block);
 
             return result;
-
         }
 
         public bool IsFish(Point p)
@@ -103,7 +98,6 @@ namespace EcoSystem
                 ? false : (_cells[p.X, p.Y] is Fish);
 
             return result;
-
         }
 
         public bool IsShark(Point p)
@@ -112,7 +106,6 @@ namespace EcoSystem
                 ? false : (_cells[p.X, p.Y] is Shark);
 
             return result;
-
         }
 
         public void SwopCell(Point p1, Point p2)
@@ -151,7 +144,7 @@ namespace EcoSystem
             if (!PointOutOfRange(p) && IsCell(p))
             {
                 _cells[p.X, p.Y] = cell;
-                _fishPlay.Play += act;
+                _fishPlay.AddEvent(act);   
             }
             else
             {

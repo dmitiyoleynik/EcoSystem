@@ -6,24 +6,18 @@ namespace EcoSystem
 {
     abstract public class Cell
     {
-        #region fields 
-
-        protected Point _position;
-        #endregion
-
         public CellIcon Icon { get; set; }
 
-        public Point Position { get => _position; set => _position = value; }
+        public Point Position { get; set; }
 
         public Cell(Point p)
         {
-            _position = p;
+            Position = p;
         }
 
-        public Cell(int x, int y, ICellContainer container)
+        public Cell(int x, int y)
         {
-            _position.X = x;
-            _position.Y = y;
+            Position = new Point {X = x,Y = y};
         }
 
         public abstract void LifeCicleStep(ICellContainer _container);

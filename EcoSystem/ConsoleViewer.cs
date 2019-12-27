@@ -14,7 +14,6 @@ namespace EcoSystem
                 for (int j = 0; j < ocean.Width; j++)
                 {
                      Console.Write(GetCellIcon(ocean[j,i]));
-                    
                 }
                 Console.WriteLine();
             }

@@ -6,12 +6,6 @@ namespace EcoSystem
 {
     public class Fish : Cell
     {
-        #region consts
-
-        protected const int DEFAULT_REPRODUCE_TIME = 30;
-        protected const int DEFAULT_DIE_TIME = 45;
-
-        #endregion
 
         #region fields
         
@@ -21,9 +15,8 @@ namespace EcoSystem
 
         #endregion
 
-        public Fish(Point p, 
-            int reproduceTime = DEFAULT_REPRODUCE_TIME,
-            int dieTime = DEFAULT_DIE_TIME)
+        public Fish(Point p, int reproduceTime = Constants.DEFAULT_REPRODUCE_TIME,
+            int dieTime = Constants.DEFAULT_DIE_TIME)
             : base(p)
         {
             this._timeToReproduce = reproduceTime;
@@ -33,20 +26,20 @@ namespace EcoSystem
 
         public void Move(Direction d, ICellContainer _container)
         {
-            if (_container.IsCell(_position + d))
+            if (_container.IsCell(Position + d))
             {
-                _container.SwopCell(_position, _position + d);
+                _container.SwopCell(Position, Position + d);
             }
         }
 
         public void Die(ICellContainer _container)
         {
-            _container.KillCell(_position);
+            _container.KillCell(Position);
         }
 
         public virtual void Reproduce(Direction d, ICellContainer _container)
         {
-            Point newPoint = _position + d;
+            Point newPoint = Position + d;
             if (_container.IsCell(newPoint))
             {
                 Fish cell = new Fish(newPoint);

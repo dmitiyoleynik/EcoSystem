@@ -7,14 +7,6 @@ namespace EcoSystem
 {
     class RandomInitializer: IInitializer
     {
-        #region consts
-
-        protected const int DEFAULT_SHARKS_NUMBER = 20;
-        protected const int DEFAULT_FISHES_NUMBER = 20;
-        protected const int DEFAULT_BLOCKS_NUMBER = 150;
-        
-        #endregion
-
         #region fields 
         
         private Random _rand = new Random();
@@ -34,7 +26,7 @@ namespace EcoSystem
         }
         
         public void SetSharksRandom(int width, int hight,
-            int number = DEFAULT_SHARKS_NUMBER)
+            int number = Constants.DEFAULT_SHARKS_NUMBER)
         {
             for (int i = 0; i < number; i++)
             {
@@ -53,7 +45,7 @@ namespace EcoSystem
         }
        
         public void SetFishesRandom(int width, int hight,
-            int number = DEFAULT_FISHES_NUMBER)
+            int number = Constants.DEFAULT_FISHES_NUMBER)
         {
             for (int i = 0; i < number; i++)
             {
@@ -72,7 +64,7 @@ namespace EcoSystem
         }
        
         public void SetBlocksRandom(int width, int hight,
-            int number = DEFAULT_BLOCKS_NUMBER)
+            int number = Constants.DEFAULT_BLOCKS_NUMBER)
         {
             for (int i = 0; i < number; i++)
             {

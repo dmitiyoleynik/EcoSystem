@@ -4,7 +4,7 @@ using System.Text;
 
 namespace EcoSystem
 {
-    public enum Direction
+    public enum Direction: byte
     {
         Up = 1,
         Down,

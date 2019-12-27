@@ -12,9 +12,8 @@ namespace EcoSystem
 
         #endregion
 
-        public Shark(Point p, 
-            int reproduceTime = DEFAULT_REPRODUCE_TIME,
-            int dieTime = DEFAULT_DIE_TIME)
+        public Shark(Point p, int reproduceTime = Constants.DEFAULT_REPRODUCE_TIME,
+            int dieTime = Constants.DEFAULT_DIE_TIME)
             : base(p,  reproduceTime, dieTime)
         {
             this.Icon = CellIcon.Shark;
@@ -22,14 +21,14 @@ namespace EcoSystem
 
         public void EatFish(Direction dir, ICellContainer _container)
         {
-            _container.KillCell(_position + dir);
+            _container.KillCell(Position + dir);
             _currentTimeToDie = _timeToDie;
             Move(dir, _container);
         }
 
         public override void Reproduce(Direction d, ICellContainer _container)
         {
-            Point newPoint = _position + d;
+            Point newPoint = Position + d;
             if (_container.IsCell(newPoint))
             {
                 Shark cell = new Shark(newPoint);
@@ -50,7 +49,7 @@ namespace EcoSystem
             }
             else
             {
-                if (_container.IsFish(_position + direct))
+                if (_container.IsFish(Position + direct))
                 {
                     EatFish(direct, _container);
                 }
